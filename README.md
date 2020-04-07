@@ -1,2 +1,2 @@
 # SuperTasks
-CS361 project repository for Group 10.
+CS361 Team 10 Project repository
