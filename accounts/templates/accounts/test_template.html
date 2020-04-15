@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Test Page</title>
+{% endblock %}
+
+
+{% block styling %}
+    <!-- Any styling needed for this template would go here -->
+    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    <h1>Sample Template Page - {{message}} </h1>
+    <img src="{% static 'images/default-profile-picture.jpg' %}">
+{% endblock %}
+
+
+
+{% block javascript %}
+    <!-- Any javascript needed for this template would go here -->
+    <script src="{% static 'javascript/test.js' %}"></script>
+{% endblock %}
