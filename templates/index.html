@@ -1,40 +1,14 @@
-{% load static %}
 
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base.html' %}
 
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Page title added here -->
-        {% block title %}
-
-        {% endblock %}
-
-        <!-- Page specific styling added here -->
-        {% block styling %}
-
-        {% endblock %}
-
-    </head>
-
-    <body>
-        <!-- Main page content added here -->
-        <h1>SuperTasks<h1>
-        <h6>Coming Soon<h6>
-
-        {% block content %}
-
-        {% endblock %}
+{% block content %}
+<h1>SuperTasks<h1>
+<h6>Coming Soon<h6>
+{% endblock %}
 
 
-        <!-- Page specific javascript added here -->
-        {% block javascript %}
+<!-- Page specific javascript added here -->
+{% block javascript %}
 
-        {% endblock %}
-    </body>
-
-
-</html>
+{% endblock %}
+   
