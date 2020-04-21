@@ -15,12 +15,17 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+
+from . import views  # SuperTasks project main views.py  /SuperTasks/SuperTasks/views.py
+
 from django.conf.urls.static import static #used for image path
 from django.conf import settings #used for image path
 
 urlpatterns = [
+    # project landing page '/' route
+    path('', views.index, name='index'),
+    # admin page
     path('admin/', admin.site.urls),
-
     #include account model urls
     path("accounts/", include("accounts.urls"))
 ]
