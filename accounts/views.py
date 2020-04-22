@@ -52,3 +52,9 @@ def register(request):
     else:
         # Return HTTP 405 Method Not Allowed
         return HttpResponseNotAllowed(['POST', 'GET'])
+
+
+#re-write me - just here to test login page
+def login(request):
+    context = {}
+    return render(request, "accounts/login.html", context)
