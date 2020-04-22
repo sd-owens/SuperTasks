@@ -6,26 +6,80 @@
 {% endblock %}
 
 
-{% block styling %}
-    <!-- Any styling needed for this template would go here -->
-    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% block style %}
+    <!-- styling for registration page -->
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
 {% endblock %}
 
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <h1>Register for SuperTasks</h1>
+    <!-- <h1>Register for SuperTasks</h1>
     <p>Style me!</p>
     <form action="/accounts/register/" method="post">
-        <!-- {% csrf_token %} -->
+        {% csrf_token %}
         {{ form }}
         <input type="submit" value="Submit">
-    </form>
+    </form> -->
+
+        <div class="form-container">
+            <div class="form-title-container">
+                <h1 class="form-logo">SuperTasks <i class="fas fa-tasks"></i></h1>
+                <hr class="form-logo">
+                <h3>Register</h3>
+            </div>
+            <form id="login-form" method="post" action=""> {% csrf_token %}
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-user fa-lg"></i>
+                    <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
+                    {{form.username}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-envelope fa-lg"></i>
+                    {{form.email}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    {{form.password}}
+                </span>
+                <span class="form-button-container">
+                    <input class="form-button submit" type="submit" value="Register">
+                </span>
+            </form>
+    
+            {{ form.errors }}
+            <hr>
+            <div class="login-link-container">
+                <h3>Don't have an account?</h3>
+                <span class="login-button-container">
+                    <a class="login-button" href="{% url 'login' %}">Login</a>
+                </span>
+            </div>
+        </div>
+
 {% endblock %}
 
-
-
 {% block javascript %}
-    <!-- Any javascript needed for this template would go here -->
-    <script src="{% static 'javascript/test.js' %}"></script>
+
+<script>
+    //script to add placeholder and classes to fields in the form 
+    $(() => {
+        let formFields = document.getElementsByTagName("input");
+        formFields[1].placeholder = "Username";
+        formFields[2].placeholder = "Email";
+        formFields[3].placeholder = "Password";
+
+        for(let i = 0; i < formFields.length; i++){
+            formFields[i].className += " form-input-field";
+        }
+   })
+
+</script>
+
 {% endblock %}

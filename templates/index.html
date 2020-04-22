@@ -1,16 +1,20 @@
 {% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+    <title>SuperTasks</title>
+{% endblock %}
+
+{% block style %}
+    
+{% endblock %}
+
 
 {% block content %}
-        {% if username %}
-            <p>Hello {{ username }} !</p>
-        {% endif %}
+<!-- Put login vs register options here on opening page -->
 {% endblock %}
 
-<!--Page specific style (css) added here-->
-{% block style %}
-{% endblock %}
 
-<!-- Page specific javascript added here -->
 {% block javascript %}
-{% endblock %}
    
+{% endblock %}

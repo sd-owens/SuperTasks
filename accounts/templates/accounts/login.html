@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Login</title>
+{% endblock %}
+
+
+{% block style %}
+    <!-- styling for registration page -->
+    <link rel="stylesheet" href="{% static 'CSS/login.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+<div class="logo-column">
+    <div class="logo-container">
+        <h1 class="logo">SuperTasks <i class="fas fa-tasks"></i></h1>
+        <hr>
+        <h3 class="logo-message">A modern tool for managing projects</h3>
+    </div>
+</div>
+    
+<div class="login-column">
+    <div class="form-container">
+        <div class="form-title-container">
+            <h1 class="form-logo">SuperTasks <i class="fas fa-tasks"></i></h1>
+            <hr class="form-logo">
+            <h1>Login</h1>
+        </div>
+        <form id="login-form" method="post" action="">
+            <span class="form-input-container">
+                <i class="form-field-icon fas fa-user fa-lg"></i>
+                <input class="form-input-field" type="text" name="username" placeholder="username" required>
+            </span>
+            <span class="form-input-container">
+                <i class="form-field-icon fas fa-lock fa-lg"></i>
+                <input class="form-input-field" type="password" name="password" placeholder="password" required>
+            </span>
+            <span class="form-button-container">
+                <input class="form-button submit" type="submit" value="Login">
+            </span>
+        </form>     
+        <hr>   
+        <div class="registration-link-container">
+            <h3>Don't have an account?</h3>
+            <span class="register-button-container">
+                <a class="register-button" href="{% url 'register' %}">Register</a>
+            </span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+

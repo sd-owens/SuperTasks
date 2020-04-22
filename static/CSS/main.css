@@ -2,23 +2,29 @@ body {
     font-family: 'Roboto', sans-serif;
     /* color: red; */
     background: #f64f59;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to top, #12c2e9, #c471ed, #f64f59);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to top,  #12c2e9, #c471ed, #f64f59); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: -webkit-linear-gradient(to bottom, #543864, #ff6363, #ffbd69);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to bottom, #543864, #ff6363, #ffbd69); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+
+    display: grid;
+    grid-template-rows: 2fr 20fr 1fr; /* 2fr row is nav, 20 fr row is main page content, 1fr row is footer*/
 }
 
-#page-container {
+/* #page-container {
     position: relative;
     min-height: 100vh;
   }
   
   #content-wrap {
-    padding-bottom: 2.5rem;    /* Footer height */
+    padding-bottom: 2.5rem;    
   }
   
   #footer {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 2.5rem;            /* Footer height */
-  }
+    height: 2.5rem;           
+  } */
