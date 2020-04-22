@@ -40,7 +40,8 @@ def register(request):
             user.password = request.POST['password']
             user.email = request.POST['email']
             user.save()
-            # TODO: Set a cookie here to keep the user logged in
+            # Sets the username value in the session cookie
+            request.session['username'] = request.POST['username']
             return HttpResponseRedirect('/')
 
         # TODO: Render "accounts/register.html" but send a message
