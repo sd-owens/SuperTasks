@@ -1,0 +1,31 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Register</title>
+{% endblock %}
+
+
+{% block styling %}
+    <!-- Any styling needed for this template would go here -->
+    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    <h1>Register for SuperTasks</h1>
+    <p>Style me!</p>
+    <form action="/accounts/register/" method="post">
+        <!-- {% csrf_token %} -->
+        {{ form }}
+        <input type="submit" value="Submit">
+    </form>
+{% endblock %}
+
+
+
+{% block javascript %}
+    <!-- Any javascript needed for this template would go here -->
+    <script src="{% static 'javascript/test.js' %}"></script>
+{% endblock %}

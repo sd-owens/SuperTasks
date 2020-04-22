@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 
 {% block content %}
-
+        {% if username %}
+            <p>Hello {{ username }} !</p>
+        {% endif %}
 {% endblock %}
 
 <!--Page specific style (css) added here-->
@@ -10,6 +12,5 @@
 
 <!-- Page specific javascript added here -->
 {% block javascript %}
-
 {% endblock %}
    
