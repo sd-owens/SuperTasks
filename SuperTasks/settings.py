@@ -38,8 +38,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    # third party, do "pip install django-widget-tweaks"
-    'widget_tweaks',
     #project apps
     'accounts',
 ]
@@ -129,7 +127,3 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
-
-# Authentication
-
-LOGIN_URL = '/accounts/login'
