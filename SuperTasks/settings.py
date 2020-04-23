@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    # third party, do "pip install django-widget-tweaks"
+    'widget_tweaks',
     #project apps
     'accounts',
 ]
