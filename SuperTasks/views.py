@@ -1,10 +1,13 @@
 # Overall project views, apps have their own views.py file.
 
 from django.shortcuts import render
-from django.contrib.auth.decorators import login_required
+from django.http import HttpResponse
 
-@login_required
+
 def index(request):
     context = {}  # reserved for later use in rendering home
 
-    return render(request, 'index.html', context)
+    # Checks session cookie if they are logged in or not
+    if 'username' in request.session:
+        context['username'] = request.session['username']
+    return render(request, 'accounts/login.html', context)

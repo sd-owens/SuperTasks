@@ -1,10 +1,9 @@
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 from django.views.decorators.csrf import csrf_exempt
-from django.contrib.auth.models import User
-from django.contrib.auth import login
 
 from .forms import RegisterForm
+from .models import User
 
 # Create your views here.
 
@@ -17,8 +16,8 @@ def test_view(request):
 
 
 @csrf_exempt
-def register_view(request):
-    """View to handle registration
+def register(request):
+    """Route to handle registration
 
     If the client uses a GET request, display the HTML page for registration
     that includes the registration form.
@@ -28,30 +27,34 @@ def register_view(request):
     """
     # TODO: remove "@csrf_exempt" after figuring out what it does
     if request.method == 'GET':
-        context = {'form': RegisterForm()}
-        return render(request, 'accounts/register.html', context)
+        form = RegisterForm()
+        context = {'form': form}
+        return render(request, "accounts/register.html", context)
 
-    if request.method == 'POST':
+    elif request.method == 'POST':
         form = RegisterForm(request.POST)
 
-        if not form.is_valid():
-            context = {'form':form}
-            return render(request, 'accounts/register.html', context)
-
-        username = request.POST['username']
-        password = request.POST['password']
-        email = request.POST['email']
-
-        # Check if a user already exists with that username
-        try:
-            user= User.objects.get(username=username)
-            context = {'form':form, 'error': f'The username {username} is already taken'}
-            return render(request, 'accounts/register.html', context)
-        except User.DoesNotExist:
-            # Create user and log them in
-            user = User.objects.create_user(username, email, password)
-            login(request, user)
+        if form.is_valid():
+            user = User()
+            user.username = request.POST['username']
+            user.password = request.POST['password']
+            user.email = request.POST['email']
+            user.save()
+            # Sets the username value in the session cookie
+            request.session['username'] = request.POST['username']
             return HttpResponseRedirect('/')
 
-    # Return HTTP 405 Method Not Allowed
-    return HttpResponseNotAllowed(['POST', 'GET'])
+        # TODO: Render "accounts/register.html" but send a message
+        # of what error the validation caught
+        context = {'form': form, 'error': 'TODO: add error here and render on front-end'}
+        return render(request, "accounts/register.html", context)
+
+    else:
+        # Return HTTP 405 Method Not Allowed
+        return HttpResponseNotAllowed(['POST', 'GET'])
+
+
+#re-write me - just here to test login page
+def login(request):
+    context = {}
+    return render(request, "accounts/login.html", context)
