@@ -5,12 +5,18 @@ body {
     background: -webkit-linear-gradient(to bottom, #543864, #ff6363, #ffbd69);  /* Chrome 10-25, Safari 5.1-6 */
     background: linear-gradient(to bottom, #543864, #ff6363, #ffbd69); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 
-    height: 100vh;
+    min-height: 100vh;
     width: 100vw;
     margin: 0;
 
     display: grid;
     grid-template-rows: 60px 1fr 30px; /* 2fr row is nav, 20 fr row is main page content, 1fr row is footer*/
+}
+
+#footer {
+  background-color: #343A40;
+  color: white;
+  width: 100%;
 }
 
 /* #page-container {

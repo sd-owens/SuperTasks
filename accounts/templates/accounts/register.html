@@ -20,14 +20,6 @@
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <!-- <h1>Register for SuperTasks</h1>
-    <p>Style me!</p>
-    <form action="/accounts/register/" method="post">
-        {% csrf_token %}
-        {{ form }}
-        <input type="submit" value="Submit">
-    </form> -->
-
         <div class="form-container">
             <div class="form-title-container">
                 <h1 class="form-logo">SuperTasks <i class="fas fa-tasks"></i></h1>
@@ -56,7 +48,7 @@
             {{ form.errors }}
             <hr>
             <div class="login-link-container">
-                <h3>Don't have an account?</h3>
+                <h3>Already have an account?</h3>
                 <span class="login-button-container">
                     <a class="login-button" href="{% url 'login' %}">Login</a>
                 </span>
