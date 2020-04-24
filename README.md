@@ -64,6 +64,27 @@ Craig Kelleher
         </p>
     </li>
     
+        <li>
+        <h5>Added Account Registration, login, and logout functionality </h5>
+        <p>
+        I too
+        </p>
+        <p>if there is any issue testing this on your local machine, the following steps should make it work (may not have to do all of them): </p>
+        <ul>
+            <li>easy_install pip</li>
+            <li>python -m pip install --upgrade pip</li>
+            <li>pip install django</li>
+            <li>pip install virtualenv</li>
+            <li~<source>\Scripts\Activate</li>
+            <li>pip install django-widget-tweaks</li>
+            <li>python manage.py migrate</li>
+            <li>python manage.py runserver</li>
+            <li>python manage.py createsuperuser</li>
+            <li>python manage.py runserver</li>
+        </ul>
+        <p>Note: creating a superuser account will allow you to go to 127.0.0.1:8000/admin and see database/edit it
+        </p>
+    </li>
     
 </ol>
 
