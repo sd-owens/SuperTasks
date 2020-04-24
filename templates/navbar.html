@@ -5,30 +5,48 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
         </button>
-    {# This logic can be similarly used to display login/logout links based on if the user is authenticated #}
-    {% if user.is_authenticated %}
-        <span class="logo-message">{{ user.get_username }}</span>
-    {% endif %}
+    
     <div class="collapse navbar-collapse" id="navbarNavDropdown">
         <ul class="navbar-nav ml-auto">
             <li class="nav-item active">
                 <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Features</a>
+                <a class="nav-link" href="#">Favorites</a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Pricing</a>
+            
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Team
+                </a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Member 1</a>
+                    <a class="dropdown-item" href="#">Member 2</a>
+                    <a class="dropdown-item" href="#">Member 3</a>
+                </div>
             </li>
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
+                Projects
                 </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-            </div>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="#">Project 1</a>
+                    <a class="dropdown-item" href="#">Project 2</a>
+                    <a class="dropdown-item" href="#">Project 3</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Inbox</a>
+            </li>
+            {# This logic can be similarly used to display login/logout links based on if the user is authenticated #}
+            <li class="nav-item">
+                <a class="nav-link" href="#">
+                {% if user.is_authenticated %}
+                <span> {{ user.get_username }} </span>
+                {% endif %}</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'logout' %}">Logout</a>
             </li>
         </ul>
         
