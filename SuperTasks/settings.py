@@ -129,3 +129,12 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
 ]
 MEDIA_ROOT = os.path.join(BASE_DIR, "static/images")
+
+# Authentication settings
+LOGIN_REDIRECT_URL = '/'
+
+# Uncomment if we need to change from this default
+# LOGIN_URL = '/accounts/login'
+
+# Uncomment if we need a logout redirect URL
+# LOGOUT_REDIRECT_URL = '........'
