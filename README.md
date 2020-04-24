@@ -64,7 +64,6 @@ Craig Kelleher
         </p>
     </li>
     
-    
 </ol>
 
 <p>Note: when you pull down these changes to your local machine you will need to run the commands:</p>
@@ -76,4 +75,21 @@ Craig Kelleher
 <p>After that if you run the command: "python manage.py runserver" the server should start up fine and youll be able to access the test page at http://127.0.0.1:8000/accounts/test.</p>
 <p>If this doesn't work for you please let me know</p>
 
-
+</li>
+    <li>
+  Added Account Registration, login, and logout functionality</li>
+    <li>
+    If there is any issue testing this on your local machine, the following steps should make it work (may not have to do all of them):</li>
+    
+        easy_install pip
+        python -m pip install --upgrade pip
+        pip install django
+        pip install virtualenv
+        ~<source>\Scripts\Activate
+        pip install django-widget-tweaks
+        python manage.py migrate
+        python manage.py runserver
+        python manage.py createsuperuser
+        python manage.py runserver
+        Note: creating a superuser account will allow you to go to 127.0.0.1:8000/admin and see database/edit it
+</li>

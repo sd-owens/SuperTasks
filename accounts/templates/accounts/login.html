@@ -1,5 +1,6 @@
 {% extends "index.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}
     <title>Login</title>
@@ -36,18 +37,24 @@
             <h1>Login</h1>
         </div>
         <form id="login-form" method="post" action="">
+            {% csrf_token %}
             <span class="form-input-container">
                 <i class="form-field-icon fas fa-user fa-lg"></i>
-                <input class="form-input-field" type="text" name="username" placeholder="username" required>
+                <!-- <input class="form-input-field" type="text" name="username" placeholder="username" required> -->
+                {{ form.username|add_class:"form-input-field"|attr:"placeholder:Username" }}
             </span>
             <span class="form-input-container">
                 <i class="form-field-icon fas fa-lock fa-lg"></i>
-                <input class="form-input-field" type="password" name="password" placeholder="password" required>
+                <!-- <input class="form-input-field" type="password" name="password" placeholder="password" required> -->
+                {{ form.password|add_class:"form-input-field"|attr:"placeholder:Password" }}
             </span>
             <span class="form-button-container">
-                <input class="form-button submit" type="submit" value="Login">
+                <input class="form-button submit" type="submit" value="login">
+                <input type="hidden" name="next" value="{{ next }}">
             </span>
         </form>     
+
+        {{ form.errors }}
         <hr>   
         <div class="registration-link-container">
             <h3>Don't have an account?</h3>
