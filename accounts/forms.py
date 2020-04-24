@@ -1,5 +1,5 @@
 from django.forms import PasswordInput, modelform_factory
-from .models import User
+from django.contrib.auth.models import User
 
 # Automatically creates a registration form from the User model
 RegisterForm = modelform_factory(
