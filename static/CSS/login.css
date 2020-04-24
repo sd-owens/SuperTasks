@@ -11,6 +11,10 @@
     grid-template-areas: "logo login";
 }
 
+#username {
+    font-weight: bold;
+  }
+
 /* left column of body containing site logo and Title */
 .logo-column {
     background-image: linear-gradient(to bottom, #543864, #ff6363, #ffbd69);
