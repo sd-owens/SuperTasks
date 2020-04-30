@@ -1,0 +1,26 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Projects</title>
+{% endblock %}
+
+
+{% block styling %}
+    <!-- Any styling needed for this template would go here -->
+    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    <h1>Projects go here - {{message}} </h1>
+    
+{% endblock %}
+
+
+
+{% block javascript %}
+    <!-- Any javascript needed for this template would go here -->
+    <script src="{% static 'javascript/test.js' %}"></script>
+{% endblock %}

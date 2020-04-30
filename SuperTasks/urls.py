@@ -27,7 +27,9 @@ urlpatterns = [
     # admin page
     path('admin/', admin.site.urls),
     #include account model urls
-    path("accounts/", include("accounts.urls"))
+    path("accounts/", include("accounts.urls")),
+    #include projects model urls
+    path("", include("projects.urls"))
 ]
 
 #Make sure django looks for images in the static/images folder
