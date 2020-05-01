@@ -18,8 +18,8 @@ class Project(models.Model):
     # Basic data type fields
     name = models.CharField(max_length=256)
     description = models.TextField()
-    due_date = models.DateField()
     start_date = models.DateField(default=datetime.now)
+    due_date = models.DateField()
     budget = models.FloatField(default=0)
 
     class ProjectStatus(models.IntegerChoices):
@@ -30,7 +30,7 @@ class Project(models.Model):
         COMPLETED = 30
         STALLED = 40
 
-    status = models.IntegerField(choices=ProjectStatus.choices)
+    status = models.IntegerField(choices=ProjectStatus.choices, default=ProjectStatus.NOT_STARTED)
 
 
     # Relational fields
