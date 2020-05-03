@@ -1,0 +1,27 @@
+name: Test Workflow
+# This workflow is triggered on pushes to the repository and Pull Requests opened.
+on:
+  push:
+  pull_request:
+
+jobs:
+  test:
+    # Checks out code, sets up Python, downloads packages with pip, and runs Django tests.
+    name: Run Django Tests
+
+    # Python should run the same on all OS but choosing Linux since that's what servers run on.
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.7
+      uses: actions/setup-python@v1
+      with:
+        python-version: '3.7'
+    - name: Install Dependencies
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+    - name: Run Tests
+      run: |
+        python manage.py test
