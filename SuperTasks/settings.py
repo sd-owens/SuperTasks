@@ -25,7 +25,12 @@ SECRET_KEY = 'xv9uwn3qkkw73h(_wi-3%fpz^83o$)6odi4!g7*god#@7gogf#'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'localhost',
+    '127.0.0.1',
+    'osu-cs361-supertasks.uc.r.appspot.com',
+    'osu-cs361-supertasks.appspot.com',
+]
 
 
 # Application definition
@@ -74,16 +79,52 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SuperTasks.wsgi.application'
 
-
-# Database
-# https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if os.getenv('GAE_APPLICATION', None):
+    # Running on production App Engine, so connect to Google Cloud SQL using
+    # the unix socket at /cloudsql/<your-cloudsql-connection string>
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '/cloudsql/osu-cs361-supertasks:us-central1:osu-cs361-supertasks',
+            'USER': 'django',
+            'PASSWORD': 'django',
+            'NAME': 'supertasks',
+        }
     }
-}
+else:
+    # Running locally so connect to either a local MySQL instance or connect to
+    # Cloud SQL via the proxy. To start the proxy via command line:
+    #
+    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
+    #
+    # INSTANCE_CONNECTION_NAME = osu-cs361-supertasks:us-central1:osu-cs361-supertasks
+    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
+    #
+    # If we want to run MySQL locally through the gcloud proxy
+    # uncomment below and comment the SQLite setting.
+    #
+    #DATABASES = {
+    #    'default': {
+    #        'ENGINE': 'django.db.backends.mysql',
+    #        'HOST': '127.0.0.1',
+    #        'PORT': '3306',
+    #        'NAME': 'supertasks',
+    #        'USER': 'django',
+    #        'PASSWORD': 'django',
+    #    }
+    #}
+    #
+    # Database
+    # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
+    #
+    # Otherwise we can use the built-in SQLite database locally
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
+    }
 
 
 # Password validation
