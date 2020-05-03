@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Projects</title>
+    <title>Features</title>
 {% endblock %}
 
 
@@ -14,8 +14,19 @@
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <h1>Projects go here - {{message}} </h1>
-    
+    <div >
+        <div class="form-title-container">
+            <h1 class="form-logo">Test Feature <i class="fas fa-tasks"></i></h1>
+            <hr class="form-logo">
+        </div>
+        {% for feature in feature_data %}
+            <li>{{ feature.title}}</li>
+        {% endfor %}
+        <!--will show all the features in this test-->>
+
+        {{ form.errors }}
+        {{ error }}
+    </div>
 {% endblock %}
 
 

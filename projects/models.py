@@ -35,11 +35,13 @@ class Project(models.Model):
 
     # Relational fields
     # Feature model will have a FK to the Project model
-    leader = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE,
-        related_name='project_leader'
-    )
+    
+    # leader = models.ForeignKey(
+    #    User,
+    #    on_delete=models.CASCADE,
+    #    related_name='project_leader',
+    #)
+    
     members = models.ManyToManyField(User)
 
     # Below are examples of optional fields that could be added
@@ -47,3 +49,46 @@ class Project(models.Model):
     # client
     # milestones
     # to-do items
+
+# Create your models here. 
+#TODO create an add feature button to the projects page.
+class Feature(models.Model):
+    """Model describing a Feature
+
+    For a Feature has a foreign key
+    to the Project - each Feature has one project it is under.
+
+    For a Feature has a foreign key
+    to the User - each Feature has one assigned user.
+    """
+
+    # Basic data type fields
+    title = models.TextField()
+    name = models.CharField(max_length=256)
+    description = models.TextField()
+    due_date = models.DateField()
+
+
+    class FeatureStatus(models.IntegerChoices):
+        "Enum to save as the project status"
+        TO_DO = 0
+        IN_PROGRESS = 10
+        DONE = 20
+
+    status = models.IntegerField(choices=FeatureStatus.choices, default=FeatureStatus.TO_DO)
+
+
+    # Relational fields
+    # Feature model will have a FK to the Project model and User model
+    
+    project = models.ForeignKey(
+        Project,
+        on_delete=models.CASCADE
+    )
+
+    assignee = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='assigned_user'
+    )
+

@@ -3,17 +3,30 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import Error
 
-from .models import Project
+from .models import Project, Feature
 from .forms import ProjectForm
 
 # Create your views here.
-# test view
+# feature test view
+@login_required
+def feature_view(request):
+    data = Feature.objects.all()
+
+    context = {
+        "feature_data": data
+    }
+    return render(request, "projects/features.html", context)
+    #return render_to_response("login/profile.html", context)
+
 @login_required
 def project_view(request):
+    data = Project.objects.all()
+
     context = {
-        "message" : "welcome",
+        "project_data": data
     }
-    return render(request, "projects/test_template.html", context)
+    return render(request, "projects/projects.html", context)
+    #return render_to_response("login/profile.html", context)
 
 @login_required
 def new_project_view(request):
@@ -26,7 +39,8 @@ def new_project_view(request):
 
         if not form.is_valid():
             context = {'form':form}
-            return render(request, 'accounts/register.html', context)
+            # put the error message in here
+            return render(request, 'accounts/new_project.html', context)
 
         name = request.POST['name']
         description = request.POST['description']
@@ -38,7 +52,8 @@ def new_project_view(request):
             Project.objects.create(name=name, description=description,
                                    start_date=start_date, due_date=due_date, 
                                    budget=budget)
-            return HttpResponseRedirect('/')
+            # Check where this redirects
+            return HttpResponseRedirect('/projects')
         except Error as err:
             context = {'error': str(err), 'form':form}
             return render(request, 'projects/new_project.html', context)

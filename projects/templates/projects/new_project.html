@@ -1,0 +1,61 @@
+{% extends "index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Create a new project</title>
+{% endblock %}
+
+{% block style %}
+    <!-- styling for registration page -->
+    <link rel="stylesheet" href="{% static 'CSS/register.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+<!-- Main content of template goes here -->
+{% block content %}
+        <div class="form-container">
+            <div class="form-title-container">
+                <h1 class="form-logo">SuperTasks <i class="fas fa-tasks"></i></h1>
+                <hr class="form-logo">
+                <h3>Create Project</h3>
+            </div>
+            <form id="login-form" method="post" action=""> {% csrf_token %}
+                <!-- "name", "description", "start_date", "due_date", "budget" -->
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-signature fa-lg"></i>
+                    <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
+                    {{form.name|add_class:"form-input-field"|attr:"placeholder:Project Name"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-sticky-note fa-lg"></i>
+                    {{form.description|add_class:"form-input-field"|attr:"placeholder:Project Description"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    {{form.start_date|add_class:"form-input-field"|attr:"placeholder:Start Date"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    {{form.due_date|add_class:"form-input-field"|attr:"placeholder:Due Date"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    {{form.budget|add_class:"form-input-field"|attr:"placeholder:Budget"}}
+                </span>
+                <span class="form-button-container">
+                    <input class="form-button submit" type="submit" value="Create">
+                </span>
+            </form>
+    
+            {{ form.errors }}
+            {{ error }}
+        </div>
+
+{% endblock %}
+

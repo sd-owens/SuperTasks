@@ -1,0 +1,37 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Projects</title>
+{% endblock %}
+
+
+{% block styling %}
+    <!-- Any styling needed for this template would go here -->
+    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    <div >
+        <div class="form-title-container">
+            <h1 class="form-logo">Active Projects <i class="fas fa-tasks"></i></h1>
+            <hr class="form-logo">
+        </div>
+        {% for project in project_data %}
+            <li>{{ project.name}}</li>
+        {% endfor %}
+        <!--each project will have its own page-->>
+
+        {{ form.errors }}
+        {{ error }}
+    </div>
+{% endblock %}
+
+
+
+{% block javascript %}
+    <!-- Any javascript needed for this template would go here -->
+    <script src="{% static 'javascript/test.js' %}"></script>
+{% endblock %}
