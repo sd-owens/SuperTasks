@@ -1,0 +1,69 @@
+{% extends "index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Account Home</title>
+{% endblock %}
+
+
+{% block style %}
+    <!-- styling for registration page -->
+    <link rel="stylesheet" href="{% static 'CSS/account_home.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+
+    <div class="container account">
+        <!-- <div class="header">
+            <h1>Account Info</h1>
+        </div> -->
+        
+        <img class="profile-picture" src="{{account.profile_picture.url}}" alt="">
+       
+        <div class="account-info">
+            <span class="account-info-field">
+                <h3>Username: </h3>  {{account.username}}
+            </span>
+            <span class="account-info-field">
+                <h3>Email: </h3> {{account.email}}
+            </span>
+            <span class="account-info-field">
+                <h3>First Name: </h3> {{account.first_name}}
+            </span>
+            <span class="account-info-field">
+                <h3>Last Name: </h3> {{account.last_name}}
+            </span>
+        </div>
+        
+        <a class="update-button" href="">Update Account</a>
+        
+    </div>
+    <div class="container teams-tasks">
+        <div class="teams">
+            <div class="header">
+                <h1>My Teams</h1>
+            </div>
+        </div>
+        <div class="tasks">
+            <div class="header">
+                <h1>My Tasks</h1>
+            </div>
+        </div>
+    </div>
+    <div class="container projects">
+        <div class="header">
+            <h1>Projects</h1>
+        </div>
+    </div>
+
+{% endblock %}
+

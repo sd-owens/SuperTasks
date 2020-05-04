@@ -55,3 +55,16 @@ def register_view(request):
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
+
+
+
+
+def account_home(request):
+    #get user account
+    account = request.user.account
+
+    context = {
+        "account": account,
+    }
+    
+    return render(request, "accounts/home.html", context)
