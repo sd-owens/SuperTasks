@@ -23,9 +23,6 @@
 {% block content %}
 
     <div class="container account">
-        <!-- <div class="header">
-            <h1>Account Info</h1>
-        </div> -->
         
         <img class="profile-picture" src="{{account.profile_picture.url}}" alt="">
        
@@ -44,18 +41,18 @@
             </span>
         </div>
         
-        <a class="update-button" href="">Update Account</a>
+        <a class="update-button" href="{% url 'settings' %}">Update Account</a>
         
     </div>
     <div class="container teams-tasks">
         <div class="teams">
             <div class="header">
-                <h1>My Teams</h1>
+                <h1>Teams</h1>
             </div>
         </div>
         <div class="tasks">
             <div class="header">
-                <h1>My Tasks</h1>
+                <h1>Tasks</h1>
             </div>
         </div>
     </div>
@@ -63,7 +60,7 @@
         <div class="header">
             <h1>Projects</h1>
         </div>
+       
     </div>
 
 {% endblock %}
-

@@ -1,10 +1,10 @@
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import login
 
-from .forms import RegisterForm
+from .forms import RegisterForm, AccountSettingsForm
 
 # Create your views here.
 
@@ -66,5 +66,23 @@ def account_home(request):
     context = {
         "account": account,
     }
-    
     return render(request, "accounts/home.html", context)
+
+
+
+def account_settings(request):
+    account = request.user.account #get users account
+    form = AccountSettingsForm(instance=account) #create AccountSettingsForm  with current user as the instance
+
+    # handle form submit
+    if request.method == "POST":
+        form = AccountSettingsForm(request.POST, request.FILES, instance=account)
+        if form.is_valid():
+            form.save()
+            return redirect("home")
+
+    context = {
+        "account": account,
+        "form": form,
+    }
+    return render(request, "accounts/settings.html", context)

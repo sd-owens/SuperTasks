@@ -1,0 +1,36 @@
+.page-content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-sizing: border-box;
+}
+
+.settings-form-container {
+    background: white;
+    height: 70%;
+    width: 55%;
+    padding: 15px;
+    border-radius: 20px;
+    box-shadow: 0 5px 20px black;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.form-header {
+    text-align: center;
+}
+
+.form-field {
+    display: flex;
+    align-items: baseline;
+    margin: 15px;
+}
+
+.form-field-label {
+    margin-right: 15px;
+}
+
+.form-button-container {
+
+}
