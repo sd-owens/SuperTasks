@@ -1,20 +1,27 @@
-** SuperTasks**
-*A task management web application modeled after ASANA*
----
-CS361 Team 10 Project repository
----
-Group members:
-Kevin Hill
-David Mikulis
-Steven Owens
-Michael Hathaway
-Craig Kelleher
+<h1>SuperTasks</h1>
+<h2>A task management web application modeled after ASANA</h2>
+<hr>
+<h2>CS361 Team 10 Project repo</h2>
+<h6>Group Members:</h6>
+<ul>
+    <li>Kevin Hill</li>
+    <li>David Mikulis</li>
+    <li>Steven Owens</li>
+    <li>Michael Hathaway</li>
+    <li>Craig Kelleher</li>
+</ul>
 
-[Asana Team Page](https://app.asana.com/0/1167416800657633/overview)
+<h6>Asana Team Page: https://app.asana.com/0/1167416800657633/overview</h6>
+
+<hr>
+<h2>How do I access/run SuperTasks?</h2>
+
+<p> Our project can be accessed publically on the web at: https://osu-cs361-supertasks.appspot.com/ <sup>1</sup> </p>
+<p> <sup>1 </sup><sub>Project hosting provided by Google Cloud using the Google App Engine.</sub> </p>
 
 <hr>
 
-<h2>** Setup Details **</h2>
+<h2>Setup Details</h2>
 
 <ol>
     <li>
