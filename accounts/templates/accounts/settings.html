@@ -26,7 +26,7 @@
         <div class="form-header">
             <h1>Update Account Settings</h1>
         </div>
-        <form method="POST" action="{% url 'settings' %}" enctype="multipart/form-data">
+        <form class="settings-form" method="POST" action="{% url 'settings' %}" enctype="multipart/form-data">
             {% csrf_token %}
             
             <div class="form-field first-name">

@@ -52,14 +52,18 @@
     width: 70%;
     padding: 15px 0;
     text-align: center;
-    border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 25px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    background-color: #ff6363;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
 }
 
 .update-button:hover {
     text-decoration: none;
-    background-color: cornflowerblue;
     color: white;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
 }
 
 .teams-tasks {
