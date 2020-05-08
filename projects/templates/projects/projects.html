@@ -21,11 +21,24 @@
         </div>
         {% for project in project_data %}
             <li>{{ project.name}}</li>
+            <li>{{ project.description}}</li>
+            <li>{{ project.start_date}}</li>
+            <li>{{ project.due_date}}</li>
+            <li>{{ project.budget}}</li>
+            {% if project.status == 0 %}
+                <li>NOT STARTED</li>
+            {% elif project.status == 10 %}
+                <li>IN PROGRESS</li>
+            {% elif project.status == 20 %}
+                <li>UNDER REVIEW</li>
+            {% elif project.status == 30 %}
+                <li>COMPLETED</li>
+            {% else %}
+                <li>STALLED</li>
+            {% endif %}
         {% endfor %}
-        <!--each project will have its own page-->>
+        <!--each project will have its own page-->
 
-        {{ form.errors }}
-        {{ error }}
     </div>
 {% endblock %}
 
