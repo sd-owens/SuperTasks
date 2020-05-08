@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #project apps
     'accounts.apps.AccountsConfig', #allow accounts/signals.py to work
+    'projects',
 ]
 
 MIDDLEWARE = [
