@@ -16,16 +16,24 @@
 {% block content %}
     <div >
         <div class="form-title-container">
-            <h1 class="form-logo">Test Feature <i class="fas fa-tasks"></i></h1>
+            <h1 class="form-logo">Active Features <i class="fas fa-tasks"></i></h1>
             <hr class="form-logo">
         </div>
         {% for feature in feature_data %}
             <li>{{ feature.title}}</li>
+            <li>{{ feature.name}}</li>
+            <li>{{ feature.description}}</li>
+            <li>{{ feature.due_date}}</li>
+            {% if feature.status == 0 %}
+                <li>TO DO</li>
+            {% elif feature.status == 10 %}
+                <li>IN PROGRESS</li>
+            {% else %}
+                <li>DONE</li>
+            {% endif %}
         {% endfor %}
-        <!--will show all the features in this test-->>
+        <!--will show all the features in this test-->
 
-        {{ form.errors }}
-        {{ error }}
     </div>
 {% endblock %}
 
