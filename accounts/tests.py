@@ -13,6 +13,8 @@ class AccountCreationTestCase(TestCase):
     def test_account_created_for_user(self):
         try:
             user_account = Account.objects.get(username="test_user", email="test_user@gmail.com")
+            self.assertEqual(user_account.username, "test_user")
+            self.assertEqual(user_account.email, "test_user@gmail.com")
         except:
             self.fail("Failed Test: test_account_created_for_user")
 
@@ -21,5 +23,6 @@ class AccountCreationTestCase(TestCase):
         try:
             user = User.objects.get(username="test_user")
             user_account = Account.objects.get(user=user)
+            self.assertEqual(user, user_account.user)
         except:
             self.fail("Failed Test: test_user_and_account_linked")
