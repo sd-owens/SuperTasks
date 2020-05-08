@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'widget_tweaks',
     #project apps
     'accounts',
+    'projects',
 ]
 
 MIDDLEWARE = [
