@@ -46,7 +46,7 @@ INSTALLED_APPS = [
     # Run "python -m pip install django-widget-tweaks" if this doesn't load
     'widget_tweaks',
     #project apps
-    'accounts',
+    'accounts.apps.AccountsConfig', #allow accounts/signals.py to work
     'projects',
 ]
 

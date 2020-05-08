@@ -1,0 +1,72 @@
+.page-content {
+    box-sizing: border-box;
+    display: grid;
+    grid-template-columns: 1fr 1fr 2fr;
+}
+
+.container {
+    min-height: calc(100% - 40px);
+    width: calc(100% - 40px);
+    background-color: white;
+    margin: 20px;
+    padding: 0;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+}
+
+.container:hover {
+    box-shadow: 0 8px 16px 5px rgba(0,0,0,0.2);
+}
+
+.account {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header {
+    text-align: center;
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100%;
+}
+
+.account-info-field {
+    display: flex;
+    align-items: baseline;
+}
+
+.account-info-field h3 {
+    margin-right: 10px;
+    font-size: 24px;
+}
+
+.profile-picture{
+    max-width: 200px;
+    max-height:200px;
+    margin: 20px auto;
+    border-radius: 50%;
+}
+
+.update-button {
+    text-decoration: none;
+    margin-top: 40px;
+    width: 70%;
+    padding: 15px 0;
+    text-align: center;
+    border-radius: 25px;
+    border: none;
+    text-decoration: none;
+    color: white;
+    background-color: #ff6363;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.update-button:hover {
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+}
+
+.teams-tasks {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+}

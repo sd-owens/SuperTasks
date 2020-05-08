@@ -1,0 +1,57 @@
+{% extends "index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Account Settings</title>
+{% endblock %}
+
+
+{% block style %}
+    <!-- styling for registration page -->
+    <link rel="stylesheet" href="{% static 'CSS/account_settings.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    
+    <div class="settings-form-container">
+        <div class="form-header">
+            <h1>Update Account Settings</h1>
+        </div>
+        <form class="settings-form" method="POST" action="{% url 'settings' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+            
+            <div class="form-field first-name">
+                <div class="form-field-label">First Name</div>
+                {{ form.first_name }}
+            </div>
+            <div class="form-field last-name">
+                <div class="form-field-label">Last Name</div>
+                {{ form.last_name }}
+            </div>
+            <div class="form-field email">
+                <div class="form-field-label">Email</div>
+                {{ form.email }}
+            </div>
+            <div class="form-field profile-picture">
+                <div class="form-field-label">Profile Picture</div>
+                {{ form.profile_picture }}
+            </div>
+            
+            <div class="form-button-container">
+                <input class="form-submit" type="submit" value="Update Information">
+                <a class="" href="{% url 'home' %}">Cancel</a>
+            </div>
+        </form>
+    </div>
+    
+
+{% endblock %}
