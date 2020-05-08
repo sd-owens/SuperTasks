@@ -42,9 +42,10 @@
     <li>Switch over the project root directory:  <strong>cd SuperTasks/</strong></li>
 </ul>
 
-<p><em>Install the modules for all dependencies in requirements.txt</em></p>
+<p><em>Install the modules for all dependencies in local-requirements.txt</em></p>
 <ul>
-    <li><strong>python -m pip install -r requirements.txt</strong></li>
+    <li><strong>python -m pip install -r local-requirements.txt</strong></li>
+    <li>note: requirements.txt with the local prefix contains dependencies for the production version only and should not be used for local development unless mySQL server and a mySQL test database are setup. </li>
 </ul>
 
 <p><em>Setup development SQlite Database</em></p>
