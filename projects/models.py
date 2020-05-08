@@ -1,4 +1,4 @@
-from datetime import datetime
+from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 
@@ -18,7 +18,7 @@ class Project(models.Model):
     # Basic data type fields
     name = models.CharField(max_length=256)
     description = models.TextField()
-    start_date = models.DateField(default=datetime.now)
+    start_date = models.DateField(default=date.today)
     due_date = models.DateField()
     budget = models.FloatField(default=0)
 
@@ -43,6 +43,11 @@ class Project(models.Model):
     #)
     
     members = models.ManyToManyField(User)
+
+    def is_overdue(self):
+        "Returns True if today is greater than the Due Date and the project is not completed."
+        today = date.today()
+        return today > self.due_date and self.status != Project.ProjectStatus.COMPLETED
 
     # Below are examples of optional fields that could be added
     # for future user stories if necessary
@@ -70,7 +75,7 @@ class Feature(models.Model):
 
 
     class FeatureStatus(models.IntegerChoices):
-        "Enum to save as the project status"
+        "Enum to save as the feature status"
         TO_DO = 0
         IN_PROGRESS = 10
         DONE = 20
