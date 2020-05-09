@@ -80,7 +80,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SuperTasks.wsgi.application'
 
-if os.getenv('GAE_APPLICATION', None):
+if os.getenv('GAE_APPLICATION', None) and DEBUG is False:
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
@@ -92,7 +92,7 @@ if os.getenv('GAE_APPLICATION', None):
             'NAME': 'supertasks',
         }
     }
-else:
+elif DEBUG is False:
     # Running locally so connect to either a local MySQL instance or connect to
     # Cloud SQL via the proxy. To start the proxy via command line:
     #
@@ -104,16 +104,18 @@ else:
     # If we want to run MySQL locally through the gcloud proxy
     # uncomment below and comment the SQLite setting.
     #
-    #DATABASES = {
-    #    'default': {
-    #        'ENGINE': 'django.db.backends.mysql',
-    #        'HOST': '127.0.0.1',
-    #        'PORT': '3306',
-    #        'NAME': 'supertasks',
-    #        'USER': 'django',
-    #        'PASSWORD': 'django',
-    #    }
-    #}
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+            'NAME': 'supertasks',
+            'USER': 'django',
+            'PASSWORD': 'django',
+        }
+    }
+else:
+
     #
     # Database
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
