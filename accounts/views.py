@@ -3,6 +3,7 @@ from django.shortcuts import render, redirect
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth.models import User
 from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, AccountSettingsForm
 
@@ -58,7 +59,7 @@ def register_view(request):
 
 
 
-
+@login_required(login_url="../login")
 def account_home(request):
     #get user account
     account = request.user.account
@@ -69,7 +70,7 @@ def account_home(request):
     return render(request, "accounts/home.html", context)
 
 
-
+@login_required(login_url="../login")
 def account_settings(request):
     account = request.user.account #get users account
     form = AccountSettingsForm(instance=account) #create AccountSettingsForm  with current user as the instance
