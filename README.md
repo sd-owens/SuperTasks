@@ -31,8 +31,12 @@
     <li>Python3 installed  https://www.python.org/downloads/</li>
     <li>Verify PIP installed with Python3:  <strong>pip -V</strong></li>
     <li>If not, install the lastest version with Python3:  <strong>python pip -m install –upgrade pip</strong></li>
-    <li>Setup a virtual environment for the project:  <strong>pip install virtualenv</strong></li>
-    <li>Start a virtual environment for the project: <strong>~<source>\Scripts\Activate</strong></li>
+    <li>Install the virtual environment manager:  <strong>pip install virtualenv</strong></li>
+    <li>Create a virtual environment instance:  <strong>virtualenv venv</strong></li>
+    <li>Start the virtual environment:</li>
+    <li>&emsp;Windows10 <strong>~<source>\Scripts\Activate</strong></li>
+    <li>&emsp;MacOS/Linux <strong>source venv/bin/activate</strong></li>
+    <li>Stop the virtual environment: <strong>deactivate</strong></li>
 </ul>
 
      
