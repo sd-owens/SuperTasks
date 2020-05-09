@@ -24,9 +24,28 @@
 }
 
 .header {
-    text-align: center;
     background-color: rgba(0, 0, 0, 0.2);
     width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.projects-button {
+    margin-left: 25px;
+    justify-self: end;
+    text-decoration: none;
+    color: white;
+    border-radius: 20px;
+    background-color: #ff6363;
+    padding: 4px 8px;
+    box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+}
+
+.projects-button:hover {
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
 }
 
 .account-info-field {
