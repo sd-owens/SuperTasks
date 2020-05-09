@@ -20,10 +20,12 @@ def feature_view(request):
 
 @login_required
 def project_view(request):
-    data = Project.objects.all()
+    data_p = Project.objects.all()
+    data_f = Feature.objects.all()
 
     context = {
-        "project_data": data
+        "project_data": data_p,
+        "feature_data": data_f
     }
     return render(request, "projects/projects.html", context)
     #return render_to_response("login/profile.html", context)

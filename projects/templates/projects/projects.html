@@ -36,6 +36,13 @@
             {% else %}
                 <li>STALLED</li>
             {% endif %}
+            <li>Features:</li>
+            {% for feature in feature_data %}
+                {% if project.id == feature.project.id %}
+                    <li>{{ feature.title}}</li>
+                {% endif %}
+            {% endfor %}
+            <br></br>
         {% endfor %}
         <!--each project will have its own page-->
 
