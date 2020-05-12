@@ -80,7 +80,8 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SuperTasks.wsgi.application'
 
-if os.getenv('GAE_APPLICATION', None) and DEBUG is False:
+if os.getenv('GAE_APPLICATION', None):
+    DEBUG = False
     # Running on production App Engine, so connect to Google Cloud SQL using
     # the unix socket at /cloudsql/<your-cloudsql-connection string>
     DATABASES = {
