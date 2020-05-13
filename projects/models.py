@@ -15,6 +15,9 @@ class Project(models.Model):
     of many projects.
     """
 
+    def __str__(self):
+        return self.name
+
     # Basic data type fields
     name = models.CharField(max_length=256)
     description = models.TextField()

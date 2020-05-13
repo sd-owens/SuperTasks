@@ -40,3 +40,9 @@ body {
     width: 100%;
     height: 2.5rem;           
   } */
+
+/* Projects app */
+.card-project {
+  max-width: 20rem;
+  min-width: 20rem;
+}
