@@ -3,6 +3,9 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import Error
 
+from .models import Team
+from .forms import TeamForm
+
 # Create your views here.
 
 @login_required
