@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     #project apps
     'accounts.apps.AccountsConfig', #allow accounts/signals.py to work
     'projects',
+    'teams',
 ]
 
 MIDDLEWARE = [
