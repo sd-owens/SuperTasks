@@ -31,7 +31,7 @@ urlpatterns = [
     #include projects model urls
     path('', include("projects.urls")),
     #include teams model urls
-    path('', include("teams.urls")),
+    path('teams/', include("teams.urls")),
 ]
 
 #Make sure django looks for images in the static/images folder
