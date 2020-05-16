@@ -29,7 +29,17 @@
             </div>
             <form id="login-form" method="post" action=""> {% csrf_token %}
                 <span class="form-input-container">
-                    <i class="form-field-icon fas fa-user fa-lg"></i>
+                    <i class="form-field-icon far fa-user-circle fa-lg"></i>
+                    <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
+                    {{form.first_name|add_class:"form-input-field"|attr:"placeholder:First Name"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon far fa-user-circle fa-lg"></i>
+                    <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
+                    {{form.last_name|add_class:"form-input-field"|attr:"placeholder:Last Name"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-user-tag"></i>
                     <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
                     {{form.username|add_class:"form-input-field"|attr:"placeholder:Username"}}
                 </span>
@@ -64,9 +74,11 @@
     //script to add placeholder and classes to fields in the form 
     $(() => {
         let formFields = document.getElementsByTagName("input");
-        formFields[1].placeholder = "Username";
-        formFields[2].placeholder = "Email";
-        formFields[3].placeholder = "Password";
+        formFields[1].placeholder = "First Name";
+        formFields[2].placeholder = "Last Name";
+        formFields[3].placeholder = "Username";
+        formFields[4].placeholder = "Email";
+        formFields[5].placeholder = "Password";
 
         for(let i = 0; i < formFields.length; i++){
             formFields[i].className += " form-input-field";

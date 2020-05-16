@@ -42,6 +42,8 @@ def register_view(request):
         username = request.POST['username']
         password = request.POST['password']
         email = request.POST['email']
+        first_name = request.POST['first_name']
+        last_name = request.POST['last_name']
 
         # Check if a user already exists with that username
         try:
@@ -50,7 +52,7 @@ def register_view(request):
             return render(request, 'accounts/register.html', context)
         except User.DoesNotExist:
             # Create user and log them in
-            user = User.objects.create_user(username, email, password)
+            user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
             login(request, user)
             return HttpResponseRedirect('/')
 
