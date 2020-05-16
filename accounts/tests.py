@@ -7,7 +7,7 @@ from .models import Account
 class AccountCreationTestCase(TestCase):
     #create new user - expected to trigger the creation of a linked account
     def setUp(self):
-        User.objects.create_user(username="test_user", email="test_user@gmail.com", password="12345")
+        User.objects.create_user(username="test_user", email="test_user@gmail.com", password="12345", first_name="John", last_name="Doe")
 
     # test that an account was made with username matching that of created user
     def test_account_created_for_user(self):
@@ -17,6 +17,15 @@ class AccountCreationTestCase(TestCase):
             self.assertEqual(user_account.email, "test_user@gmail.com")
         except:
             self.fail("Failed Test: test_account_created_for_user")
+
+    # test that an account was made with name matching that of created user
+    def test_account_full_name_matches_user(self):
+        try:
+            user_account = Account.objects.get(username="test_user")
+            self.assertEqual(user_account.first_name, "John")
+            self.assertEqual(user_account.last_name, "Doe")
+        except:
+            self.fail("Failed Test: test_account_full_name_matches_user")
 
     #test that the user and the account objects are linked
     def test_user_and_account_linked(self):

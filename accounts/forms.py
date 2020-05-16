@@ -6,7 +6,7 @@ from .models import Account
 # Automatically creates a registration form from the User model
 RegisterForm = modelform_factory(
     User,
-    fields=("username", "password", "email"),
+    fields=("first_name", "last_name", "username", "password", "email"),
     widgets={"password": PasswordInput()}
 )
 
