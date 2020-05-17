@@ -4,10 +4,9 @@ from django.db import models
 
 class Team(models.Model):
 
-    team_name = models.CharField(max_length=50)
-    users = models.ManyToManyField("accounts.Account")
-    task = models.ForeignKey("projects.Feature", on_delete=models.CASCADE, blank = True, null = True)
-    project = models.ForeignKey("projects.Project", on_delete=models.CASCADE, blank = True, null = True)
+    name = models.CharField(max_length=50)
+    accounts = models.ManyToManyField("accounts.Account")
+    projects = models.ManyToManyField("projects.Project")
 
     def __str__(self):
-        return self.team_name
+        return self.name
