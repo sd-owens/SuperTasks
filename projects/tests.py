@@ -42,15 +42,3 @@ class ProjectModelTests(TestCase):
         project = Project(name='completed', description='completed proejct',
                                    start_date=month_ago, due_date=week_ago, status=Project.ProjectStatus.COMPLETED)
         self.assertFalse(project.is_overdue())
-
-    # test that a project was made and modified
-    def test_add_project(self):
-        try:
-            project = Project(name='completed', description='completed project', start_date=month_ago, due_date=week_ago, status=Project.ProjectStatus.COMPLETED)
-            new_proj = Project.objects.get(name="completed")
-            #edit project
-            new_proj.name = "new_completed";
-            self.assertEqual(new_proj.name, "new_completed")
-            self.assertFalse(new_proj.is_overdue())
-        except:
-            self.fail("Failed Test: project did not match added project")
