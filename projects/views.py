@@ -36,6 +36,16 @@ def project_view(request):
     }
     return render(request, "projects/projects.html", context)
 
+
+@login_required
+def detail_project_view(request):
+    if request.method == 'GET':
+        context = {
+        
+        }
+        return render(request, 'projects/done_test.html', context)
+
+
 @login_required
 def new_project_view(request):
     if request.method == 'GET':
