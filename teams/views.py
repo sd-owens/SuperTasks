@@ -30,18 +30,18 @@ def new_team_view(request):
 
             return render(request, 'teams/new_team.html', context)
 
-    name = request.POST['name']
-    accounts = request.POST.getlist('accounts')
+        name = request.POST['name']
+        accounts = request.POST.getlist('accounts')
 
-    try:
-        team = Team.objects.create(name=name)
-        for account_id in accounts:
-            team.accounts.add(account_id)
-        # Check where this redirects
-        return HttpResponseRedirect('/teams')
-    except Error as err:
-        context = {'error': str(err), 'form': form}
-        return render(request, 'teams/new_team.html', context)
+        try:
+            team = Team.objects.create(name=name)
+            for account_id in accounts:
+                team.accounts.add(account_id)
+            # Check where this redirects
+            return HttpResponseRedirect('/teams')
+        except Error as err:
+            context = {'error': str(err), 'form': form}
+            return render(request, 'teams/new_team.html', context)
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
