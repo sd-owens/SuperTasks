@@ -10,8 +10,9 @@ from .forms import TeamForm
 
 @login_required
 def team_view(request):
-    context = {}
-    return render(request, "teams/team.html", context)
+    teams = Team.objects.all()
+    context = {'teams': teams}
+    return render(request, "teams/teams.html", context)
 
 
 @login_required

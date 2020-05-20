@@ -1,0 +1,9 @@
+.profile-picture {
+    max-width: 50px;
+    border-radius: 50%;
+}
+
+.card-team {
+    margin: 1rem;
+    width: 20rem;
+}
