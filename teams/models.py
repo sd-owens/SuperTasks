@@ -6,7 +6,7 @@ class Team(models.Model):
 
     name = models.CharField(max_length=50)
     accounts = models.ManyToManyField("accounts.Account")
-    projects = models.ManyToManyField("projects.Project")
+    projects = models.ManyToManyField("projects.Project", blank=True)
 
     def __str__(self):
         return self.name
