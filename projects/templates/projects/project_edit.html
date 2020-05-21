@@ -15,7 +15,7 @@
 <!-- Main content of template goes here -->
 {% block content %}
     <div >
-        <p>Project</p>
+
         <li>{{ project_data.id }}</li>
         <li>{{ project_data.name }}</li>
         <li>{{ project_data.description }}</li>
@@ -31,25 +31,11 @@
         {% else %}
             <li>STALLED</li>
         {% endif %}
-        </br>
-        <p>is Done!</p>
-        <br></br>
-        <p>Features</p>
-        {% for feature in feature_data %}
-            {% if feature.project.id == project_data.id %}
-                <li>{{ feature.title}}</li>
-                {% if feature.status == 0 %}
-                    <li>TO DO</li>
-                {% elif feature.status == 10 %}
-                    <li>IN PROGRESS</li>
-                {% else %}
-                    <li>DONE</li>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        </br>
-        <p>are Done!</p>
-
+        <form id="login-form" method="post" action=""> {% csrf_token %}
+        <span class="form-button-container">
+            <input class="form-button submit" type="submit" value="Complete">
+        </span>
+        </form>
     </div>
 {% endblock %}
 

@@ -52,6 +52,18 @@ class Project(models.Model):
         today = date.today()
         return today > self.due_date and self.status != Project.ProjectStatus.COMPLETED
 
+    def set_to_done(self):
+        "Sets all the features associated with it to done, returns false if no features"
+        Project.objects.filter(id=self.id).update(status=30)
+        has_feature = False
+        data_f = Feature.objects.all()
+        Feature.objects.filter(project=self.id).update(status=20)
+        for feat in data_f:
+            if (feat.project.id == self.id):
+                has_feature = True
+        return has_feature
+        
+
     # Below are examples of optional fields that could be added
     # for future user stories if necessary
     # client

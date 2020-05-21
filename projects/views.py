@@ -8,11 +8,13 @@ from .forms import ProjectForm
 
 # Create your views here.
 # done test view
-def done_view(request):
-    data = Feature.objects.all()
+def done_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
+    data_f = Feature.objects.all()
 
     context = {
-        "feature_data": data
+        "project_data": data_p,
+        "feature_data": data_f
     }
     return render(request, "projects/done_test.html", context)
 
@@ -38,12 +40,22 @@ def project_view(request):
 
 
 @login_required
-def detail_project_view(request):
-    if request.method == 'GET':
-        context = {
-        
-        }
-        return render(request, 'projects/done_test.html', context)
+def detail_project_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
+    data_f = Feature.objects.all()
+
+    context = {
+        "project_data": data_p,
+        "feature_data": data_f
+    }
+    if request.method == 'POST':
+        has_feature = data_p.set_to_done()
+        if has_feature:
+            # Check redirect to done page temporarily
+            return HttpResponseRedirect('/projects/done/'+str(project_id))
+        else:
+            return HttpResponseRedirect('/projects/done'+str(project_id))
+    return render(request, 'projects/project_edit.html', context)
 
 
 @login_required
