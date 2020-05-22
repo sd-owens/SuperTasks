@@ -10,13 +10,26 @@ from .forms import ProjectForm
 # done test view
 def done_view(request, project_id):
     data_p = Project.objects.get(id=project_id)
-    data_f = Feature.objects.all()
 
     context = {
-        "project_data": data_p,
-        "feature_data": data_f
+        "project_data": data_p
     }
+    #Return to all projects page
+    if request.method == 'POST':
+        return HttpResponseRedirect('/projects/')
     return render(request, "projects/done_test.html", context)
+
+# done test view (no features done)
+def done2_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
+
+    context = {
+        "project_data": data_p
+    }
+    #Return to all projects page
+    if request.method == 'POST':
+        return HttpResponseRedirect('/projects/')
+    return render(request, "projects/done_test2.html", context)
 
 @login_required
 def feature_view(request):
@@ -30,11 +43,9 @@ def feature_view(request):
 @login_required
 def project_view(request):
     data_p = Project.objects.all()
-    data_f = Feature.objects.all()
 
     context = {
         "project_data": data_p,
-        "feature_data": data_f
     }
     return render(request, "projects/projects.html", context)
 
@@ -42,11 +53,9 @@ def project_view(request):
 @login_required
 def detail_project_view(request, project_id):
     data_p = Project.objects.get(id=project_id)
-    data_f = Feature.objects.all()
 
     context = {
         "project_data": data_p,
-        "feature_data": data_f
     }
     if request.method == 'POST':
         has_feature = data_p.set_to_done()
@@ -54,7 +63,7 @@ def detail_project_view(request, project_id):
             # Check redirect to done page temporarily
             return HttpResponseRedirect('/projects/done/'+str(project_id))
         else:
-            return HttpResponseRedirect('/projects/done'+str(project_id))
+            return HttpResponseRedirect('/projects/done2/'+str(project_id))
     return render(request, 'projects/project_edit.html', context)
 
 

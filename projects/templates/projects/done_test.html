@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block title %}
-    <title>Features</title>
+    <title>Done</title>
 {% endblock %}
 
 
@@ -14,47 +14,78 @@
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <div >
-        <p>Project</p>
-        <li>{{ project_data.id }}</li>
-        <li>{{ project_data.name }}</li>
-        <li>{{ project_data.description }}</li>
-        <li>{{ project_data.due_date }}</li>
-        {% if project_data.status == 0 %}
-            <li>NOT STARTED</li>
-        {% elif project_data.status == 10 %}
-            <li>IN PROGRESS</li>
-        {% elif project_data.status == 20 %}
-            <li>UNDER REVIEW</li>
-        {% elif project_data.status == 30 %}
-            <li>COMPLETED</li>
-        {% else %}
-            <li>STALLED</li>
-        {% endif %}
-        </br>
-        <p>is Done!</p>
-        <br></br>
-        <p>Features</p>
-        {% for feature in feature_data %}
-            {% if feature.project.id == project_data.id %}
-                <li>{{ feature.title}}</li>
-                {% if feature.status == 0 %}
-                    <li>TO DO</li>
-                {% elif feature.status == 10 %}
-                    <li>IN PROGRESS</li>
-                {% else %}
-                    <li>DONE</li>
-                {% endif %}
-            {% endif %}
-        {% endfor %}
-        </br>
-        <p>are Done!</p>
-
+<div class="container">
+</br>
+    <div class="col-xs-12 col-md-8">
+        <div class="card card-project">
+            <div class="card-header">
+                <h5 class="card-title">Project {{ project_data.id }}</h5>
+            </div>
+            <div class="form-container">
+                <table class="table table-striped">
+                    <tr>
+                        <td class="active"><b>Name</b></td>
+                        <td class="active">{{ project_data.name }}</td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Description</b></td>
+                        <td class="active">{{ project_data.description }}</td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Due Date</b></td>
+                        <td class="active">{{ project_data.due_date }}</td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Budget</b></td>
+                        <td class="active">{{ project_data.budget }}</td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Status</b></td>
+                        <td class="active">{{ project_data.get_status_display }}</td>
+                    </tr>  
+                    <tr>
+                        <td><h5>is Done!</h5></td>
+                    </tr>            
+                </table>
+            </div>
+        </div>
     </div>
-{% endblock %}
+    </br>
+ 
+    <h5><p>Features</p></h5>
+    {% for feature in project_data.feature_set.all %}
+        <div class="col-xs-12 col-md-8">
+            <div class="card card-project">
+                <div class="card-header">
+                    <h5 class="card-title">Feature {{ feature.id }}</h5>
+                </div>
+                <div class="form-container">
+                    <table class="table table-bordered">
+                        <tr>
+                            <td class="active"><b>Title</b></td>
+                            <td class="active">{{ feature.title }}</td>
+                        </tr> 
+                        <tr>
+                            <td class="active"><b>Status</b></td>
+                            <td class="active">{{ feature.get_status_display }}</td>
+                        </tr>
+                        <tr>
+                            <td><h5>is Done!</h5></td>
+                        </tr>            
+                    </table>
+                </div>
+            </div>
+        </div>
+        </br>
+    {% endfor %}
 
+            <form id="login-form" method="post" action=""> {% csrf_token %}
+                <span class="form-button-container">
+                    <input class="form-button submit" type="submit" value="See Projects">
+                </span>
+            </form>
 
+</div>
 
-{% block javascript %}
 
 {% endblock %}

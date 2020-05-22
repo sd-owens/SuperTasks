@@ -1,46 +1,71 @@
 {% extends "index.html" %}
 {% load static %}
+{% load widget_tweaks %}
 
 {% block title %}
-    <title>Features</title>
+    <title>Edit Project</title>
 {% endblock %}
-
 
 {% block styling %}
-    <!-- Any styling needed for this template would go here -->
-    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
-{% endblock %}
+    <!-- styling for edit page -->
+    <link rel="stylesheet" href="{% static 'CSS/edit_project.css' %}">
 
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <div >
-
-        <li>{{ project_data.id }}</li>
-        <li>{{ project_data.name }}</li>
-        <li>{{ project_data.description }}</li>
-        <li>{{ project_data.due_date }}</li>
-        {% if project_data.status == 0 %}
-            <li>NOT STARTED</li>
-        {% elif project_data.status == 10 %}
-            <li>IN PROGRESS</li>
-        {% elif project_data.status == 20 %}
-            <li>UNDER REVIEW</li>
-        {% elif project_data.status == 30 %}
-            <li>COMPLETED</li>
-        {% else %}
-            <li>STALLED</li>
-        {% endif %}
-        <form id="login-form" method="post" action=""> {% csrf_token %}
-        <span class="form-button-container">
-            <input class="form-button submit" type="submit" value="Complete">
-        </span>
-        </form>
+<div class="container">
+</br>
+    <div class="col-xs-12 col-md-12">
+        <div class="card card-project">
+            <div class="form-title-container">
+                <h1 class="form-logo">Edit</h1>
+                <hr class="form-logo">
+                <h3></h3>
+            </div>
+            <div class="card-header">
+                <h5 class="card-title">Project {{ project_data.id }}</h5>
+            </div>
+            <div class="form-container">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="active"><b>Name</b></td>
+                        <td class="active">{{ project_data.name }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Description</b></td>
+                        <td class="active">{{ project_data.description }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Due Date</b></td>
+                        <td class="active">{{ project_data.due_date }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Budget</b></td>
+                        <td class="active">{{ project_data.budget }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Status</b></td>
+                        <td class="active">{{ project_data.get_status_display }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr>              
+                </table>
+                <form id="login-form" method="post" action=""> {% csrf_token %}
+                <span class="form-button-container">
+                    <input class="form-button submit" type="submit" value="Complete">
+                </span>
+                </form>
+            </div>
+        </div>
     </div>
-{% endblock %}
-
-
-
-{% block javascript %}
-
+</div>
 {% endblock %}
