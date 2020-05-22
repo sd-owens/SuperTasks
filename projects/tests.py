@@ -19,7 +19,7 @@ class ProjectModelTests(TestCase):
 
     def test_overdue_past_due_date(self):
         """Verifies that the is_overdue check returns True
-        if the proejct is past the Due Date
+        if the project is past the Due Date
         """
         today = date.today()
         week_ago = today - timedelta(days=7)

@@ -7,7 +7,15 @@ from .models import Project, Feature
 from .forms import ProjectForm
 
 # Create your views here.
-# feature test view
+# done test view
+def done_view(request):
+    data = Feature.objects.all()
+
+    context = {
+        "feature_data": data
+    }
+    return render(request, "projects/done_test.html", context)
+
 @login_required
 def feature_view(request):
     data = Feature.objects.all()
@@ -16,7 +24,6 @@ def feature_view(request):
         "feature_data": data
     }
     return render(request, "projects/features.html", context)
-    #return render_to_response("login/profile.html", context)
 
 @login_required
 def project_view(request):
@@ -28,7 +35,16 @@ def project_view(request):
         "feature_data": data_f
     }
     return render(request, "projects/projects.html", context)
-    #return render_to_response("login/profile.html", context)
+
+
+@login_required
+def detail_project_view(request):
+    if request.method == 'GET':
+        context = {
+        
+        }
+        return render(request, 'projects/done_test.html', context)
+
 
 @login_required
 def new_project_view(request):
