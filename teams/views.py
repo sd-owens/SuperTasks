@@ -3,6 +3,10 @@ from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import Error
 
+from rest_framework import status
+from rest_framework.decorators import api_view
+from rest_framework.response import Response
+
 from accounts.models import Account
 from .models import Team
 from .forms import TeamForm
@@ -49,6 +53,7 @@ def new_team_view(request):
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
 
+@api_view (['GET', 'PUT'])
 @login_required
 def team_view(request, team_id):
     "Displays an existing team and allows for editing. URL: /teams/<int:team_id>"
@@ -71,12 +76,23 @@ def team_view(request, team_id):
             'is_new_team': False,
             'member_ids': member_ids,
         }
+        print("test")
         return render(request, "teams/team.html", context)
 
     if request.method == 'PUT':
         # Replace with logic to update the existing team
+
+
+        # name = request.PUT['name']
+
+
+        # not reaching this line!!
+        print("That was a PUT request")
         print(request.PUT)
         return HttpResponseRedirect('/')
 
     # Return HTTP 405 Method Not Allowed
+    
+    # Never makes it here also!!
+    print("you are here")
     return HttpResponseNotAllowed(['POST', 'GET'])
