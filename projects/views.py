@@ -57,9 +57,10 @@ def new_feature_view(request):
         name = request.POST['name']
         description = request.POST['description']
         due_date = request.POST['due_date']
+        #project = request.POST['project']
 
         try:
-            Feature.objects.create(name=name, description=description, due_date=due_date)
+            Feature.objects.create(name=name, description=description, due_date=due_date)#, project=project)
             return HttpResponseRedirect('/projects')
         except Error as err:
             context = {'error': str(err), 'form':form}

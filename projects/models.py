@@ -57,8 +57,8 @@ class Project(models.Model):
         self.status=Project.ProjectStatus.COMPLETED
         self.save()
         has_feature = False
-        Feature.objects.filter(project=self.id).update(status=Feature.FeatureStatus.DONE)
-        if (Project.objects.get(id=self.id).feature_set.all().count() > 0):
+        self.feature_set.all().update(status=Feature.FeatureStatus.DONE)
+        if (self.feature_set.all().count() > 0):
             has_feature = True
         return has_feature
         
