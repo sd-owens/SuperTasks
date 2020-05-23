@@ -42,7 +42,7 @@ def feature_view(request):
     return render(request, "projects/project.html", context)
 
 @login_required
-def new_feature_view(request):
+def new_feature_view(request, project_id):
     if request.method == 'GET':
         context = {'form': FeatureForm()}
         return render(request, 'projects/new_feature.html', context)
@@ -52,15 +52,22 @@ def new_feature_view(request):
 
         if not form.is_valid():
             context = {'form':form}
-            return render(request, 'accounts/new_feature.html', context)
+            return render(request, 'projects/new_feature.html', context)
 
         name = request.POST['name']
         description = request.POST['description']
         due_date = request.POST['due_date']
         #project = request.POST['project']
+        project = Project.objects.get(id=project_id)
 
         try:
-            Feature.objects.create(name=name, description=description, due_date=due_date)#, project=project)
+            Feature.objects.create(
+                name=name, 
+                description=description, 
+                due_date=due_date, 
+                project=project,
+                assignee_id=None
+            )
             return HttpResponseRedirect('/projects')
         except Error as err:
             context = {'error': str(err), 'form':form}

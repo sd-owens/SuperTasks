@@ -117,13 +117,13 @@
                     </p>
                 </div>
                 <div class="card-footer">
-                    <a href="/projects/{{ project.id }}" class="btn btn-link float-right">Manage Project &#8594;</a>
+                    <a href="/projects/{{ project_data.id }}" class="btn btn-link float-right">Manage Project &#8594;</a>
                 </div>
             </div>
             {% endfor %}
             <div class="card card-project">
                 <div class="card-body d-flex justify-content-center align-items-center">
-                    <a href="/projects/new_feature" class="btn btn-primary btn-large">+ New Feature</a>
+                    <a href="/projects/{{ project_data.id }}/new_feature" class="btn btn-primary btn-large">+ New Feature</a>
                 </div>
             </div>
 
