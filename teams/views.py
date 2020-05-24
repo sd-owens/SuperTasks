@@ -79,6 +79,7 @@ def team_view(request, team_id):
         return render(request, "teams/team.html", context)
 
     #TODO this method is not standard REST, need converted to PUT.
+    #TODO logic adds but does not remove users from the team.
     if request.method == 'POST':
         # Replace with logic to update the existing team
 
@@ -89,11 +90,11 @@ def team_view(request, team_id):
         print(accounts)
         try:
             team = Team.objects.get(id=team_id)
-            print(team)
+            # print(team)
 
             for account_id in accounts:
+
                 team.accounts.add(account_id)
-        
 
             return HttpResponseRedirect('/teams')
 
