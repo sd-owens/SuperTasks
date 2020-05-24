@@ -53,7 +53,6 @@ def new_team_view(request):
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
 
-@api_view (['GET', 'PUT'])
 @login_required
 def team_view(request, team_id):
     "Displays an existing team and allows for editing. URL: /teams/<int:team_id>"
@@ -79,7 +78,7 @@ def team_view(request, team_id):
         print("test")
         return render(request, "teams/team.html", context)
 
-    if request.method == 'PUT':
+    if request.method == 'POST':
         # Replace with logic to update the existing team
 
 
@@ -88,8 +87,8 @@ def team_view(request, team_id):
 
         # not reaching this line!!
         print("That was a PUT request")
-        print(request.PUT)
-        return HttpResponseRedirect('/')
+        print(request.POST)
+        return HttpResponseRedirect('/teams')
 
     # Return HTTP 405 Method Not Allowed
     

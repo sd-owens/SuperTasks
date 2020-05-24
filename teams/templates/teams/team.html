@@ -29,7 +29,7 @@
         <hr class="form-logo">
         <h3>{%if is_new_team %}New Team{% else %}{{ team.name }}{% endif %}</h3>
     </div>
-    <form id="team-form" method="{% if is_new_team %}POST{% else %}PUT{% endif %}" action=""> {% csrf_token %}
+    <form id="team-form" method="{% if is_new_team %}POST{% else %}POST{% endif %}" action=""> {% csrf_token %}
         <span class="input-group">
             <span class="input-group-prepend">
                 <span class="form-field-icon fas fa-signature fa-lg"></span>
