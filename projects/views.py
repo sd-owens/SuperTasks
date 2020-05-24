@@ -2,48 +2,105 @@ from django.http import HttpResponseRedirect, HttpResponseNotAllowed
 from django.shortcuts import render
 from django.contrib.auth.decorators import login_required
 from django.db import Error
+from django.views.generic import CreateView
 
 from .models import Project, Feature
-from .forms import ProjectForm
+from .forms import ProjectForm, FeatureForm
 
 # Create your views here.
 # done test view
-def done_view(request):
-    data = Feature.objects.all()
+def done_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
 
     context = {
-        "feature_data": data
+        "project_data": data_p
     }
+    #Return to all projects page
+    if request.method == 'POST':
+        return HttpResponseRedirect('/projects/')
     return render(request, "projects/done_test.html", context)
+
+# done test view (no features done)
+def done2_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
+
+    context = {
+        "project_data": data_p
+    }
+    #Return to all projects page
+    if request.method == 'POST':
+        return HttpResponseRedirect('/projects/')
+    return render(request, "projects/done_test2.html", context)
 
 @login_required
 def feature_view(request):
-    data = Feature.objects.all()
+    data_f = Feature.objects.all()
 
     context = {
-        "feature_data": data
+        "feature_data": data_f
     }
-    return render(request, "projects/features.html", context)
+    return render(request, "projects/project.html", context)
+
+@login_required
+def new_feature_view(request, project_id):
+    if request.method == 'GET':
+        context = {'form': FeatureForm()}
+        return render(request, 'projects/new_feature.html', context)
+
+    if request.method == 'POST':
+        form = FeatureForm(request.POST)
+
+        if not form.is_valid():
+            context = {'form':form}
+            return render(request, 'projects/new_feature.html', context)
+
+        name = request.POST['name']
+        description = request.POST['description']
+        due_date = request.POST['due_date']
+        #project = request.POST['project']
+        project = Project.objects.get(id=project_id)
+
+        try:
+            Feature.objects.create(
+                name=name, 
+                description=description, 
+                due_date=due_date, 
+                project=project,
+                assignee_id=None
+            )
+            return HttpResponseRedirect('/projects')
+        except Error as err:
+            context = {'error': str(err), 'form':form}
+            return render(request, 'projects/new_feature.html', context)
+
+    # Return HTTP 405 Method Not Allowed
+    return HttpResponseNotAllowed(['POST', 'GET'])
 
 @login_required
 def project_view(request):
     data_p = Project.objects.all()
-    data_f = Feature.objects.all()
 
     context = {
         "project_data": data_p,
-        "feature_data": data_f
     }
     return render(request, "projects/projects.html", context)
 
 
 @login_required
-def detail_project_view(request):
-    if request.method == 'GET':
-        context = {
-        
-        }
-        return render(request, 'projects/done_test.html', context)
+def detail_project_view(request, project_id):
+    data_p = Project.objects.get(id=project_id)
+
+    context = {
+        "project_data": data_p,
+    }
+    if request.method == 'POST':
+        has_feature = data_p.set_to_done()
+        if has_feature:
+            # Check redirect to done page temporarily
+            return HttpResponseRedirect('/projects/done/'+str(project_id))
+        else:
+            return HttpResponseRedirect('/projects/done2/'+str(project_id))
+    return render(request, 'projects/project_edit.html', context)
 
 
 @login_required
