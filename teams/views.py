@@ -78,20 +78,29 @@ def team_view(request, team_id):
         print("test")
         return render(request, "teams/team.html", context)
 
+    #TODO this method is not standard REST, need converted to PUT.
     if request.method == 'POST':
         # Replace with logic to update the existing team
 
+        form = TeamForm(request.POST)
 
-        # name = request.PUT['name']
+        name = request.POST['name']
+        accounts = request.POST.getlist('accounts')
+        print(accounts)
+        try:
+            team = Team.objects.get(id=team_id)
+            print(team)
 
+            for account_id in accounts:
+                team.accounts.add(account_id)
+        
 
-        # not reaching this line!!
-        print("That was a PUT request")
-        print(request.POST)
-        return HttpResponseRedirect('/teams')
+            return HttpResponseRedirect('/teams')
+
+        except Error as err:
+
+            context = {'error': str(err), 'form': form}
+            return render(request, 'teams/new_team.html', context)
 
     # Return HTTP 405 Method Not Allowed
-    
-    # Never makes it here also!!
-    print("you are here")
     return HttpResponseNotAllowed(['POST', 'GET'])
