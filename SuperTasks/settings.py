@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework',
     # Run "python -m pip install django-widget-tweaks" if this doesn't load
     'widget_tweaks',
     #project apps
