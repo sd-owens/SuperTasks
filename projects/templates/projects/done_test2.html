@@ -1,0 +1,62 @@
+{% extends "index.html" %}
+{% load static %}
+
+{% block title %}
+    <title>Done</title>
+{% endblock %}
+
+
+{% block styling %}
+    <!-- Any styling needed for this template would go here -->
+    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+{% endblock %}
+
+
+<!-- Main content of template goes here -->
+{% block content %}
+    <div class="container">
+    </br>
+        <div class="col-xs-12 col-md-8">
+            <div class="card card-project">
+                <div class="card-header">
+                    <h5 class="card-title">Project {{ project_data.id }}</h5>
+                </div>
+                <div class="form-container">
+                    <table class="table table-striped">
+                        <tr>
+                            <td class="active"><b>Name</b></td>
+                            <td class="active">{{ project_data.name }}</td>
+                        </tr> 
+                        <tr>
+                            <td class="active"><b>Description</b></td>
+                            <td class="active">{{ project_data.description }}</td>
+                        </tr> 
+                        <tr>
+                            <td class="active"><b>Due Date</b></td>
+                            <td class="active">{{ project_data.due_date }}</td>
+                        </tr> 
+                        <tr>
+                            <td class="active"><b>Budget</b></td>
+                            <td class="active">{{ project_data.budget }}</td>
+                        </tr> 
+                        <tr>
+                            <td class="active"><b>Status</b></td>
+                            <td class="active">{{ project_data.get_status_display }}</td>
+                        </tr>  
+                        <tr>
+                            <td><h5>is Done!</h5></td>
+                        </tr>            
+                    </table>
+                </div>
+            </div>
+        </div>
+        </br>
+    </div>
+
+    <form id="login-form" method="post" action=""> {% csrf_token %}
+        <span class="form-button-container">
+            <input class="form-button submit" type="submit" value="See Projects">
+        </span>
+    </form>
+    
+{% endblock %}

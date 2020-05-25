@@ -80,6 +80,10 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'SuperTasks.wsgi.application'
 
+# Set this to True when running migrations on the Google Cloud SQL database
+# See DATABASE_MIGRATION_README.md for more information.
+USE_CLOUD_SQL_PROXY = False
+
 if os.getenv('GAE_APPLICATION', None):
     DEBUG = False
     # Running on production App Engine, so connect to Google Cloud SQL using
@@ -93,17 +97,9 @@ if os.getenv('GAE_APPLICATION', None):
             'NAME': 'supertasks',
         }
     }
-elif DEBUG is False:
-    # Running locally so connect to either a local MySQL instance or connect to
-    # Cloud SQL via the proxy. To start the proxy via command line:
-    #
-    #     $ cloud_sql_proxy -instances=[INSTANCE_CONNECTION_NAME]=tcp:3306
-    #
-    # INSTANCE_CONNECTION_NAME = osu-cs361-supertasks:us-central1:osu-cs361-supertasks
-    # See https://cloud.google.com/sql/docs/mysql-connect-proxy
-    #
-    # If we want to run MySQL locally through the gcloud proxy
-    # uncomment below and comment the SQLite setting.
+elif USE_CLOUD_SQL_PROXY is True:
+    # Connect to Google Cloud SQL via the proxy.
+    # See DATABASE_MIGRATION_README.md for information on how to connect the proxy.
     #
     DATABASES = {
         'default': {
@@ -116,12 +112,8 @@ elif DEBUG is False:
         }
     }
 else:
-
-    #
-    # Database
+    # Built-in SQLite database for local development
     # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-    #
-    # Otherwise we can use the built-in SQLite database locally
 
     DATABASES = {
         'default': {

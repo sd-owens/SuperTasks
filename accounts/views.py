@@ -54,7 +54,7 @@ def register_view(request):
             # Create user and log them in
             user = User.objects.create_user(username=username, email=email, password=password, first_name=first_name, last_name=last_name)
             login(request, user)
-            return HttpResponseRedirect('/')
+            return HttpResponseRedirect('/accounts/home')  # redirect to home page after registration
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])

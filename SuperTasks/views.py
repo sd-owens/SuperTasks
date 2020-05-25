@@ -1,11 +1,12 @@
 # Overall project views, apps have their own views.py file.
 
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 
 @login_required
 def index(request):
-    context = {}  # reserved for later use in rendering home
-
-    return render(request, 'index.html', context)
+   
+    return redirect('accounts/home')
+    #return render(request, 'index.html', context)
+   
