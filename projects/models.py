@@ -52,6 +52,17 @@ class Project(models.Model):
         today = date.today()
         return today > self.due_date and self.status != Project.ProjectStatus.COMPLETED
 
+    def set_to_done(self):
+        "Sets all the features associated with it to done, returns false if no features"
+        self.status=Project.ProjectStatus.COMPLETED
+        self.save()
+        has_feature = False
+        self.feature_set.all().update(status=Feature.FeatureStatus.DONE)
+        if (self.feature_set.all().count() > 0):
+            has_feature = True
+        return has_feature
+        
+
     # Below are examples of optional fields that could be added
     # for future user stories if necessary
     # client
@@ -62,20 +73,16 @@ class Project(models.Model):
 #TODO create an add feature button to the projects page.
 class Feature(models.Model):
     """Model describing a Feature
-
     For a Feature has a foreign key
     to the Project - each Feature has one project it is under.
-
     For a Feature has a foreign key
     to the User - each Feature has one assigned user.
     """
-
     # Basic data type fields
     title = models.TextField()
     name = models.CharField(max_length=256)
     description = models.TextField()
     due_date = models.DateField()
-
 
     class FeatureStatus(models.IntegerChoices):
         "Enum to save as the feature status"
@@ -84,19 +91,18 @@ class Feature(models.Model):
         DONE = 20
 
     status = models.IntegerField(choices=FeatureStatus.choices, default=FeatureStatus.TO_DO)
-
-
     # Relational fields
     # Feature model will have a FK to the Project model and User model
-    
     project = models.ForeignKey(
         Project,
         on_delete=models.CASCADE
     )
-
     assignee = models.ForeignKey(
         User,
         on_delete=models.CASCADE,
-        related_name='assigned_user'
+        related_name='assigned_user',
+        null=True,
+        blank=True,
+        default=None
     )
 

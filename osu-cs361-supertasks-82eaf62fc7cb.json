@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "osu-cs361-supertasks",
+  "private_key_id": "82eaf62fc7cb679171b9de99a01a1d8565050046",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCt8Un7Spujaia8\nKBY4O/3TOj8bGNcrDGZAknpVNOrPAw0KVtIrvJ6Or9zduEOuaMnQteTPsvN+PN5b\nH4ocVIiMH/TGu/iCQIJQnTBRPATRqVOgI7rUqxSSlx39b1Rd203ggnelMZFw9yeh\nslj6m5b55RDz+yuPO3yH9SD5aeXpvchKJstOHL3I2w52IoLsFYRXlUFG1ncXnC7l\no/mDAVUjWdAT9QAa/EilBIYWgq3ax5+GwvtOLt4TF3E0Eek1sZJjJJhxC7TJW2oA\nb1g94HlKAnopq5Cc6FucUSYUC1olY7IJWL/VWKfV95KIasMG8CRxHKMNFDMLUJ7p\nGUzfXpSFAgMBAAECggEAA4spddD7nEZuY61fY/dBo8OsVM+r9/c6HGuoPnIM2xxV\nqi0Hz1y/lgGUjEYq9haag2TDbs0Rir+y+fiJvyuNKGmlV3Rns53LGGSzZ7OJLt6k\n0tAjKu/i8qJ8ImyUEKcRsTmee+vtL48boNAuSoOhw1tCcksZEAks4+RcgGJ3ae9I\nkGH2DU7NsyT40ucZrMaNdx1SSpgYZTfcJX6RaIWxVCzZL0CY8nd/u/kruBdKsjQy\nErks+XybtZOCXzhwT7NUVbQwLY6VuYyB3mHvZIS9k4a2OTRBhdtn853LMlvqKQi+\n45fDmd+tzgnoHY1rtSbC5T2/5ggCnu3P9yYxZK//6wKBgQDcVWNqnf3NZ0Lhu2yZ\n30IcwxXaWyhlz24rqXB2sMmcrBhTqDTEHpX/Ej81iV/mxHzWIHUurdt8jL+xq1Yq\ncX5IxUcKHjpiNcHp/rcoPeXmbJnEYLvTDT/00S53SKWZ09Y43gY5TWjjB8cRmRlV\numd5AmAeGGPo1SmzOGi/1og+KwKBgQDKGXWUDso/x9Q7AwvWwQJ95P/7ct7DUGkW\nBNEWl6XMsZSq2K8a4YOPHFzo6KnvSKLY4F5vIVe1t0O0KyyPoevmpVs602G4EaRd\n2rqph2IarfEIkDPelq/6JFXD5nj5UaYrmPXBa9heSXkZqgXkashWBTLrKSfqZ7Zf\nJtCtQKDQDwKBgDdCv0V9TKuYq4CcFlfdU+KM101FsbMfPF19CLTsEBTYYN2SgXFy\nzmID/JB73O6u9zRpPZqwhi0NzAJOm7TXdDniKLgT7sa0/uamON/B7ohFUqebL2B2\noUTQthu6v7X+GGt43AzBKn5OdBIo2N7UeqEyBFNoAJ7j36qQik0bDF6zAoGBAKYP\nSVeA15qUvcRHeoDZUwzTD6sy9euStOZMyuk/bhLFj5zaMvdpecorygPuuUNOcdC2\ne6HgycscbNsr5o+Wwtlf4ZhyfAbdKCueQGZwQaIebsFUi+pH8w0csgQn6hsiheGo\n67YkwUKoKIN3+yN2wmo8F1y3En8+/NEueaUCR6DtAoGBAIDQLMcZSp5rr6zX/LFl\nMegYlCfz5OG4nE5Z6Q4/1IrxfR7uiQeWltAw5A+7Sujv2D9D+5t5Oy6EWz7Roz3r\n5tNin7EUSt6fOjqbQ3fkY+K6/D7Q2Zs58J+KQBIJSyat8Vqp/Gg8/5XGuuazf4YZ\nbMeEyXN863/xcyYMIDKXLGiW\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloud-sql-proxy@osu-cs361-supertasks.iam.gserviceaccount.com",
+  "client_id": "102848048724159247500",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-sql-proxy%40osu-cs361-supertasks.iam.gserviceaccount.com"
+}

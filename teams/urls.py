@@ -1,12 +1,13 @@
 from django.urls import path
-from django.contrib.auth import views as auth_views
 
 from . import views
 
 urlpatterns = [
-    path("", views.team_view, name="team_view"),
+    path("", views.dashboard_view, name="team_dashboard"),
 
-    # Future Create new Teams Route.
-    path("new/", views.new_team_view, name="team_new"),
+
+    path("new/", views.new_team_view, name="new_team"),
+
+    path("<int:team_id>", views.team_view, name="team"),
 
 ]

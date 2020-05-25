@@ -1,0 +1,134 @@
+{% extends "index.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block title %}
+    <title>Edit Project</title>
+{% endblock %}
+
+{% block styling %}
+    <!-- styling for edit page -->
+    <link rel="stylesheet" href="{% static 'CSS/edit_project.css' %}">
+
+    <!-- Google Fonts: Roboto -->
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500&family=Roboto:wght@500&display=swap" rel="stylesheet">
+
+    <!-- Font awesome icons for user and password fields -->
+    <script src="https://kit.fontawesome.com/88cc25f307.js" crossorigin="anonymous"></script>
+{% endblock %}
+
+<!-- Main content of template goes here -->
+{% block content %}
+<div class="container">
+</br>
+    <div class="col-xs-12 col-md-12">
+        <div class="card card-project">
+            <div class="form-title-container">
+                <h1 class="form-logo">Project Management</h1>
+                <hr class="form-logo">
+                <h3></h3>
+            </div>
+            <div class="card-header">
+                <h5 class="card-title">Project #{{ project_data.id }}</h5>
+            </div>
+            <div class="form-container">
+                <table class="table table-bordered">
+                    <tr>
+                        <td class="active"><b>Name</b></td>
+                        <td class="active">{{ project_data.name }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Description</b></td>
+                        <td class="active">{{ project_data.description }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Due Date</b></td>
+                        <td class="active">{{ project_data.due_date }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Budget</b></td>
+                        <td class="active">{{ project_data.budget }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr> 
+                    <tr>
+                        <td class="active"><b>Status</b></td>
+                        <td class="active">{{ project_data.get_status_display }}</td>
+                        <td class="info"><button>edit</button></td>
+                    </tr>              
+                </table>
+                <form id="login-form" method="post" action=""> {% csrf_token %}
+                <span class="form-button-container">
+                    <input class="form-button submit" type="submit" value="Complete">
+                </span>
+                </form>
+            </div>
+        </div>
+        <h5><p>Features</p></h5>
+        {% for feature in project_data.feature_set.all %}
+            <div class="col-xs-12 col-md-8">
+                <div class="card card-project">
+                    <div class="card-header">
+                        <h5 class="card-title">Feature #{{ feature.id }}</h5>
+                    </div>
+                    <div class="form-container">
+                        <table class="table table-bordered">
+                            <tr>
+                                <td class="active"><b>Feature Name</b></td>
+                                <td class="active">{{ feature.name }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr> 
+                            <tr>
+                                <td class="active"><b>Description</b></td>
+                                <td class="active">{{ feature.description }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr> 
+                            <tr>
+                                <td class="active"><b>Due Date</b></td>
+                                <td class="active">{{ feature.due_date }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr> 
+                            <tr>
+                                <td class="active"><b>Status</b></td>
+                                <td class="active">{{ feature.get_status_display }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr>        
+                        </table>
+                    </div>
+                </div>
+            </div>
+            </br>
+        {% endfor %}
+        <div class="container">
+        <div class="d-flex flex-wrap">
+            {% for feature in feature_data %}
+            <div class="card card-project">
+                <div class="card-header">
+                    <h5 class="card-title">{{ feature_data.name }}</h5>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">{{ feature.description }}</p>
+                    <p class="text-muted"><strong>Due: </strong>{{ feature.due_date }}
+                        {% if project.is_overdue %}
+                        <span class="badge badge-danger ml-2">Overdue</span>
+                        {% endif %}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="/projects/{{ project_data.id }}" class="btn btn-link float-right">Manage Project &#8594;</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="card card-project">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <a href="/projects/{{ project_data.id }}/new_feature" class="btn btn-primary btn-large">+ New Feature</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    </div>
+</div>
+{% endblock %}

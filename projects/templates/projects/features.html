@@ -2,39 +2,53 @@
 {% load static %}
 
 {% block title %}
-    <title>Features</title>
+<title>Features</title>
 {% endblock %}
 
 
 {% block styling %}
-    <!-- Any styling needed for this template would go here -->
-    <link rel="stylesheet" href="{% static 'CSS/test.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'CSS/features.css' %}">
 {% endblock %}
 
 
 <!-- Main content of template goes here -->
 {% block content %}
-    <div >
-        <div class="form-title-container">
-            <h1 class="form-logo">Active Features <i class="fas fa-tasks"></i></h1>
-            <hr class="form-logo">
-        </div>
-        {% for feature in feature_data %}
-            <li>{{ feature.title}}</li>
-            <li>{{ feature.name}}</li>
-            <li>{{ feature.description}}</li>
-            <li>{{ feature.due_date}}</li>
-            {% if feature.status == 0 %}
-                <li>TO DO</li>
-            {% elif feature.status == 10 %}
-                <li>IN PROGRESS</li>
-            {% else %}
-                <li>DONE</li>
-            {% endif %}
-        {% endfor %}
-        <!--will show all the features in this test-->
-
+<div>
+    <div class="form-title-container">
+        <h1>Features <span class="fas fa-tasks"></span></h1>
+        <hr>
     </div>
+
+    <div class="container">
+        <div class="d-flex flex-wrap">
+            {% for feature in feature_data %}
+            <div class="card card-project">
+                <div class="card-header">
+                    <h5 class="card-title">{{ feature.title }}</h5>
+                    <span class="badge badge-info">{{ feature.get_status_display }}</span>
+                </div>
+                <div class="card-body">
+                    <p class="card-text">Name:</p>
+                    <p class="card-text">{{ feature.name }}</p>
+                    <p class="card-text">Description:</p>
+                    <p class="card-text">{{ feature.description }}</p>
+                    <p class="text-muted"><strong>Due: </strong>{{ feature.due_date }}
+                    </p>
+                </div>
+                <div class="card-footer">
+                    <a href="/projects/feature/{{ feature.id }}" class="btn btn-link float-right">Manage Feature &#8594;</a>
+                </div>
+            </div>
+            {% endfor %}
+            <div class="card card-project">
+                <div class="card-body d-flex justify-content-center align-items-center">
+                    <a href="/projects/feature/new" class="btn btn-primary btn-large">+ New Feature</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
 {% endblock %}
 
 
