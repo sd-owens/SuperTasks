@@ -49,6 +49,18 @@
             <div class="header">
                 <h1>Teams</h1>
             </div>
+            <div class="teams-list">
+                {% if teams %}
+                    {% for team in teams %}
+                        <div class="team-preview">
+                            <h3>{{team}}</h3>
+                            <a href="{% url 'team' team.id %}"><i class="fas fa-users-cog"></i></a>
+                        </div>
+                    {% endfor%}
+                {% else %}
+                    <h3>You're not currently on any teams</h3>
+                {% endif %}
+            </div>
         </div>
         <div class="tasks">
             <div class="header">

@@ -66,8 +66,14 @@ def account_home(request):
     #get user account
     account = request.user.account
 
+    #get teams the user is a member of 
+    user_teams = account.team_set.all()
+
+    #get project the user is working on
+
     context = {
         "account": account,
+        "teams": user_teams,
     }
     return render(request, "accounts/home.html", context)
 
