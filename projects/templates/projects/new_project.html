@@ -34,18 +34,18 @@
                 </span>
                 <span class="form-input-container">
                     <i class="form-field-icon fas fa-sticky-note fa-lg"></i>
-                    {{form.description|add_class:"form-input-field"|attr:"placeholder:Project Description"}}
+                    {{form.description|add_class:"form-input-field"|attr:"placeholder:Project Description"|attr:"rows:3"}}
                 </span>
                 <span class="form-input-container">
-                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    <i class="form-field-icon far fa-calendar-alt fa-lg"></i>
                     {{form.start_date|add_class:"form-input-field"|attr:"placeholder:Start Date"}}
                 </span>
                 <span class="form-input-container">
-                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    <i class="form-field-icon far fa-calendar-alt fa-lg"></i>
                     {{form.due_date|add_class:"form-input-field"|attr:"placeholder:Due Date"}}
                 </span>
                 <span class="form-input-container">
-                    <i class="form-field-icon fas fa-lock fa-lg"></i>
+                    <i class="form-field-icon fas fa-money-bill-alt fa-lg"></i>
                     {{form.budget|add_class:"form-input-field"|attr:"placeholder:Budget"}}
                 </span>
                 <span class="form-button-container">
@@ -58,4 +58,3 @@
         </div>
 
 {% endblock %}
-

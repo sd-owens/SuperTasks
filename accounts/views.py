@@ -70,6 +70,8 @@ def account_home(request):
     user_teams = account.team_set.all()
 
     #get project the user is working on
+    user_projects = request.user.project_set.all()
+    print(user_projects)
 
     context = {
         "account": account,
