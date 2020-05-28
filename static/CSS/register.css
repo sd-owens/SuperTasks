@@ -2,10 +2,11 @@
     /* background-image: linear-gradient(to bottom, #43cea2, #185a9d); */
     /* background-image: linear-gradient(to bottom, #4568dc , #b06ab3); */
     background-image: linear-gradient(to bottom, #543864, #ff6363, #ffbd69);
-    width: 100vw;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
 
     box-sizing: border-box;
+    padding: 10px;
 }
 
 .form-container {
@@ -76,6 +77,10 @@ input {
     margin: 7px;
     border: none;
     outline: none;
+}
+
+.form-input-field .textarea {
+
 }
 
 /* Div containing form buttons */
