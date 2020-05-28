@@ -71,18 +71,20 @@
     width: 70%;
     padding: 15px 0;
     text-align: center;
-    border-radius: 25px;
+    border-radius: 15px;
     border: none;
     text-decoration: none;
     color: white;
     background-color: #ff6363;
     box-shadow: 0 3px 3px rgba(0, 0, 0, 0.3);
+    transition: 0.3s;
 }
 
 .update-button:hover {
     text-decoration: none;
     color: white;
     box-shadow: 0 4px 5px rgba(0, 0, 0, 0.5);
+    transform: scale(1.2);
 }
 
 .teams-tasks {
@@ -114,14 +116,16 @@
     font-size: 1.5em;
 }
 
-.team-preview a:hover {
+.team-preview a:hover i {
     background-color: #ff6363;
     color: white;
-    font-size: 2em;
+    /* font-size: 2em; */
+    transform: scale(1.3);
 }
 
 .team-preview i {
     font-size: inherit;
+    transition: 0.3s;
 }
 
 .project-preview {
@@ -148,12 +152,18 @@
     font-size: 1.5em;
 }
 
-.project-preview a:hover {
+.project-preview a:hover i {
     background-color: #ff6363;
     color: white;
-    font-size: 2em;
+    /* font-size: 2em; */
+    transform: scale(1.5);
 }
 
 .project-preview i {
     font-size: inherit;
+    transition: 0.3s;
+}
+
+.project-preview div {
+    padding: 8px;
 }
