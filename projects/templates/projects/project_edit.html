@@ -94,8 +94,21 @@
                                 <td class="active"><b>Status</b></td>
                                 <td class="active">{{ feature.get_status_display }}</td>
                                 <td class="info"><button>edit</button></td>
-                            </tr>        
+                            </tr>  
                         </table>
+                    </div>
+                    <div class="form-container">
+                        <table>
+                            {% for subtask in feature.subtask_set.all %}
+                            <tr>
+                                <td class="active">{{ subtask.get_status_display }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr>
+                            {% endfor %}     
+                            <tr>
+                                <a href="/projects/{{ project_data.id }}/features/{{ feature.id }}/new_subtask" class="btn btn-primary btn-sm">+ New Subtask</a>
+                            </tr> 
+                        </table> 
                     </div>
                 </div>
             </div>

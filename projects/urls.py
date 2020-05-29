@@ -7,6 +7,7 @@ urlpatterns = [
     path("projects/new", views.new_project_view, name="projects_new"), 
     path('projects/<int:project_id>', views.detail_project_view, name="projects_detail"),
     path("projects/<int:project_id>/new_feature", views.new_feature_view, name="features_new"),
+    path("projects/<int:project_id>/features/<int:feature_id>/new_subtask", views.new_subtask_view, name="subtasks_new"),
     #path("projects/edit_feature/<int:feature_id>", views.done2_view, name="edit_feature"),
     #temporary url below for displaying user story result will rename them to more descriptive names later.
     path("projects/done/<int:project_id>", views.done_view, name="done"), 

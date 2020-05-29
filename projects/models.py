@@ -69,8 +69,7 @@ class Project(models.Model):
     # milestones
     # to-do items
 
-# Create your models here. 
-#TODO create an add feature button to the projects page.
+
 class Feature(models.Model):
     """Model describing a Feature
     For a Feature has a foreign key
@@ -101,6 +100,41 @@ class Feature(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='assigned_user',
+        null=True,
+        blank=True,
+        default=None
+    )
+ 
+
+class Subtasks(models.Model):
+    """Model describing a Subtasks
+    For a subtask has a foreign key
+    to the Feature - each Subtask has one Feature it is under.
+    For a Subtask has a foreign key
+    to the User - each Subtask has one assigned user.
+    """
+    # Basic data type fields
+    name = models.CharField(max_length=256)
+    comment = models.TextField()
+    due_date = models.DateField()
+
+    class SubtaskStatus(models.IntegerChoices):
+        "Enum to save as the feature status"
+        TO_DO = 0
+        DONE = 10
+
+    status = models.IntegerField(choices=SubtaskStatus.choices, default=SubtaskStatus.TO_DO)
+    # Relational fields
+    # Subtask model will have a FK to the Feature model and User model
+    feature = models.ForeignKey(
+        Feature,
+        on_delete=models.CASCADE
+    )
+
+    tasker = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE,
+        related_name='assigned_tasker',
         null=True,
         blank=True,
         default=None

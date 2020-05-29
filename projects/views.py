@@ -5,7 +5,7 @@ from django.db import Error
 from django.views.generic import CreateView
 
 from .models import Project, Feature
-from .forms import ProjectForm, FeatureForm
+from .forms import ProjectForm, FeatureForm, SubtaskForm
 
 # Create your views here.
 # done test view
@@ -40,6 +40,15 @@ def feature_view(request):
         "feature_data": data_f
     }
     return render(request, "projects/project.html", context)
+
+@login_required
+def new_subtask_view(request, project_id, feature_id):
+    if request.method == 'GET':
+        context = {'form': SubtaskForm()}
+        return render(request, 'projects/new_subtask.html', context)
+
+    # Return HTTP 405 Method Not Allowed
+    return HttpResponseNotAllowed(['POST', 'GET'])
 
 @login_required
 def new_feature_view(request, project_id):
