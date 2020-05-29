@@ -54,7 +54,7 @@
                     {% for team in teams %}
                         <div class="team-preview">
                             <h3>{{team}}</h3>
-                            <a href="{% url 'team' team.id %}"><i class="fas fa-users-cog"></i></a>
+                            <a href="{% url 'team' team.id %}"><i class="fas fa-user-edit"></i></a>
                         </div>
                     {% endfor%}
                 {% else %}
@@ -74,9 +74,25 @@
     <div class="container projects">
         <div class="header">
             <h1>Projects</h1>
-            <a class="projects-button" href="{% url 'projects' %}">All Projects</a>
         </div>
-       
+        <div class="project-list">
+            {% if projects %}
+            {% for project in projects %}
+            <div class="project-preview">
+                <div>
+                    <h4>Project: {{project.name}} |</h4>
+                    <h5>Team: {{project.project_team}}</h5>
+                </div>
+                <a href="{% url 'projects_detail' project.id %}"><i class="fas fa-users-cog"></i></a>
+            </div>
+            {% endfor%}
+            {% else %}
+            <div class="project-preview">
+                <h3>You have no active projects</h3>
+                <a href="{% url 'projects_new' %}"><i class="fas fa-plus-circle"></i></a>
+            </div>
+            {% endif %}
+        </div>
     </div>
 
 {% endblock %}

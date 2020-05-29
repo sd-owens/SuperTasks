@@ -11,8 +11,10 @@ from .forms import TeamForm
 @login_required
 def dashboard_view(request):
     "Displays a list of the existing teams and their members. URL: /teams"
-    teams = Team.objects.all()
-    context = {'teams': teams}
+    #get teams the user is a member of
+    user_teams = request.user.account.team_set.all()
+
+    context = {'teams': user_teams}
     return render(request, "teams/dashboard.html", context)
 
 
