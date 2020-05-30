@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "osu-cs361-supertasks",
+  "private_key_id": "f97d63097624693c47a1b181fbd07663063434a5",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCuValEKW0eaePf\nAVOZsdooZRZLyWGFBION/OGGJ6X3zeY+6TzPaCn6DTww5l7hz0BBh11iGgV5clRp\nA4R696GP4rqIE6Amt5I21kA1bInykAqnfuC2PYACb18UPp2DEYIOrA/+n/noK6Pe\nUXhlq3FZepwqTupmnZgcMFK8OskZh7oM5VJKfzBBq3Vc3AnN9meVSpatv3+jG4E7\nejCgwcVlRrnQVNXK+9TBLzYMl8bj/aVdBuWiLhQHs9kbpMrfez3kLJJqTCaHRm1k\nVnAWsxX+iuLeiZO+O/Gmgkei6VEutmNfDr8+8nepIWNene8qVGltWOqsB09W7PVU\nxwiq/p3zAgMBAAECggEAP1SH/mZsKOm/qVHijElDHnyGanaYEgnPPoPYa3M4w/oM\nw9rXx+KnqRoovPzbB/3RclyZzFr2lSU2y8VG2aLekpYDPA6hFZ+HIpuXTLEGtdKk\nxC7/s8RIndnWeNS8RJJWJD1WPCHiV3iO+WKwMYLj1OUJGQd8+FUUnlzhmVZjmn2M\nOhWZPNPeD2wS9R1szfPdh+mz6+y++KrGuXazDiO3pC2j6BKAC0cKQWGdDxmNjlEZ\nKnhitCanyuQtZEvAcfGZKzMZllkBS3f1fgFajMiM5HdZAXexCYMYE1qbbTwzbRQR\n/3rygkishjq5rZmM8LyNse4TI39A1E8Vj/3/+skinQKBgQD0PLSHI5IRkLG3MwPr\nphyehzdU5IuroEcMnMlyr+DG6hpYqzJA7IBh3Yawzf3m0ifm+TCL9j8MuimE9q1E\neAJxjHrgOwdAzeKwZmXubzbjYphFdlszMWMMc38lOZmrkfXgvScI04DAI8YUiPPZ\n433o20Kb2SQVzqk6rGA/u1rpbwKBgQC2uxnDQp0m1AHRzpdDMKUQYwau57eo9nNc\n/5+UgZ2UvlVBebaP1s8iC1qkpWiSTPVK/o4YHbeZDYHPMLaBQx8FW09BYbtHsFq7\nrNOXXkc6GTCQDcd/o9oIv7vRbXBZpTWOD+9WJXkYbr746lQ7Pf5isaC+3O0170zH\ncpUemJqpvQKBgHIkPKo7cXRMDwHzEY37n7xmrPE7rhqTWSEH1Q2ILKBJn+54c4/r\n90PFZ8ERQ+uvo35KTunaNzUXe3fsYKVzAJFYecR5UbZzgdG2yURZLWmvFkLAQXb3\nSbbz8yPOe4a3PBW/0JJLZgxlq5jFOFFIA/vjHIoBPOAEKQqGrKScRqx5AoGAMGRk\ncj2V+M50nOelT3n2fNx8zJ05GloKOzrHPEEHRnkRgwGEw5sTx+RR4QCdLQGMhIvd\nfa2BDdtx4Tj5XEo2UOjZmGsVeerOXJ1se83P9ybsoXnEt5zhBSghyVi+RD9oa3L0\n40+RPlM16B3GqNnGIMUB2QoRGBODtd42d5/addECgYEA2EmrfdfByfikaQxLcMmo\nvFP8qxxjBjkC1VZmuc+pLLNqvXoEuPErcWuLpCD9OPVwPgAkYiOmkFGSdfdXPzuN\nVTYniU32lpoXPwSTCtrN8jLvY1JNibbMboEL1IjlOu07RFNy30NEgXMU6otxfb2z\nRAjm36+b//IJ2ipauatKnqo=\n-----END PRIVATE KEY-----\n",
+  "client_email": "cloud-storage-bucket@osu-cs361-supertasks.iam.gserviceaccount.com",
+  "client_id": "109807674706309825953",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/cloud-storage-bucket%40osu-cs361-supertasks.iam.gserviceaccount.com"
+}

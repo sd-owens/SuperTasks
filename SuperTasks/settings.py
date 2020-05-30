@@ -175,3 +175,15 @@ LOGIN_REDIRECT_URL = '/'
 
 # Uncomment if we need a logout redirect URL
 # LOGOUT_REDIRECT_URL = '........'
+
+# Use Google Cloud Storage bucket for media when running in Google Cloud
+# This overrules the local "/images/" directory for media.
+if os.getenv('GAE_APPLICATION', None):
+    DEFAULT_FILE_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'
+    GS_BUCKET_NAME = 'osu-cs361-supertasks.appspot.com'
+    os.environ['GOOGLE_APPLICATION_CREDENTIALS'] = './osu-cs361-supertasks-f97d63097624.json'
+    
+    # Leave this commented unless we want to use the Google Cloud Storage bucket for CSS/JS files too
+    # That would involve using 'python manage.py collectstatic' during the build process which would
+    # upload static files in "/static/" directory to Google Cloud Storage bucket.
+    # STATICFILES_STORAGE = 'storages.backends.gcloud.GoogleCloudStorage'

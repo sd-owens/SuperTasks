@@ -2,6 +2,8 @@ from datetime import date
 from django.db import models
 from django.contrib.auth.models import User
 
+from teams.models import Team
+
 # Create your models here.
 class Project(models.Model):
     """Model describing a Project
@@ -45,7 +47,9 @@ class Project(models.Model):
     #    related_name='project_leader',
     #)
     
-    members = models.ManyToManyField(User)
+    #members = models.ManyToManyField(User)
+    # each project will be linked to a team
+    project_team = models.ForeignKey(Team, on_delete=models.CASCADE)
 
     def is_overdue(self):
         "Returns True if today is greater than the Due Date and the project is not completed."
@@ -105,4 +109,3 @@ class Feature(models.Model):
         blank=True,
         default=None
     )
-
