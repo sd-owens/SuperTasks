@@ -6,6 +6,7 @@ from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 
 from .forms import RegisterForm, AccountSettingsForm
+from projects.models import Project
 
 # Create your views here.
 
@@ -70,12 +71,12 @@ def account_home(request):
     user_teams = account.team_set.all()
 
     #get project the user is working on
-    user_projects = request.user.project_set.all()
-    print(user_projects)
+    user_projects = Project.objects.filter(project_team__in=user_teams)
 
     context = {
         "account": account,
         "teams": user_teams,
+        "projects": user_projects,
     }
     return render(request, "accounts/home.html", context)
 

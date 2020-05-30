@@ -4,13 +4,16 @@ from datetime import date, timedelta
 from django.contrib.auth.models import User
 
 from .models import Project, Feature
+from teams.models import Team
 
 # Create your tests here.
 class ProjectModelTests(TestCase):
 
     def setUp(self):
         self.test_user = User(username='test_user', password='test_user')
+        self.test_team = Team(name="test_team")
         self.test_user.save()
+        self.test_team.save()
 
     def test_not_overdue(self):
         """Verifies that the is_overdue check returns False
@@ -53,7 +56,7 @@ class ProjectModelTests(TestCase):
         "Verifies that setting a Project to done will set all of its Features to done."
         tomorrow = date.today() + timedelta(days=1)
         # Create a Project objects
-        project = Project(name='test', description='test', due_date=tomorrow)
+        project = Project(name='test', description='test', due_date=tomorrow, project_team=self.test_team)
         project.save()
 
         # Create two Feature objects
