@@ -97,8 +97,11 @@ def project_view(request):
 def detail_project_view(request, project_id):
     data_p = Project.objects.get(id=project_id)
 
+    sorted_f = data_p.feature_set.order_by('priority')
+
     context = {
         "project_data": data_p,
+        "sorted_features": sorted_f,
     }
     if request.method == 'POST':
         has_feature = data_p.set_to_done()
