@@ -40,9 +40,10 @@
                     <i class="form-field-icon fas fa-lock fa-lg"></i>
                     {{form.due_date|add_class:"form-input-field"|attr:"placeholder:Due Date"}}
                 </span>
+                <h3 class="text-center">Set Priority</h3>
                 <span class="form-input-container">
-                    <i class="form-field-icon fas fa-lock fa-lg"></i>
-                    {{form.priority|add_class:"form-input-field"|attr:"placeholder:Priority"}}
+                        <i class="form-field-icon fas fa-exclamation-triangle fa-lg"></i>
+                        {{form.priority|add_class:"form-input-field"|attr:"placeholder:Priority"}}
                 </span>
                 <span class="form-button-container">
                     <input class="form-button submit" type="submit" value="Create">
