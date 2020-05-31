@@ -88,9 +88,6 @@ class Feature(models.Model):
     description = models.TextField()
     due_date = models.DateField()
 
-    class Meta:
-        order_with_respect_to = 'priority'
-
     class FeatureStatus(models.IntegerChoices):
         "Enum to save as the feature status"
         TO_DO = 0
