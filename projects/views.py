@@ -58,6 +58,7 @@ def new_feature_view(request, project_id):
         name = request.POST['name']
         description = request.POST['description']
         due_date = request.POST['due_date']
+        priority = request.POST['priority']
         #project = request.POST['project']
         project = Project.objects.get(id=project_id)
 
@@ -65,7 +66,8 @@ def new_feature_view(request, project_id):
             Feature.objects.create(
                 name=name, 
                 description=description, 
-                due_date=due_date, 
+                due_date=due_date,
+                priority=priority, 
                 project=project,
                 assignee_id=None
             )

@@ -25,5 +25,5 @@ class ProjectForm(ModelForm):
 
 FeatureForm = modelform_factory(
     Feature,
-    fields=("name", "description", "due_date", "status"),
+    fields=("name", "description", "due_date", "priority"),
 )

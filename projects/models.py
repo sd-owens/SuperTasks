@@ -103,7 +103,7 @@ class Feature(models.Model):
         MEDIUM = 10
         HIGH = 00
 
-    status = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.NONE)
+    priority = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.NONE)
 
 
     # Relational fields
