@@ -101,7 +101,7 @@ class Feature(models.Model):
         NONE = 0
         LOW = 10
         MEDIUM = 20
-        HIGHT = 30
+        HIGH = 30
 
     status = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.NONE)
 
