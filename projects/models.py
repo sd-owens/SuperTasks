@@ -98,12 +98,11 @@ class Feature(models.Model):
 
     class PriorityStatus(models.IntegerChoices):
         "Enum to save as feature priority"
-        NONE = 30
-        LOW = 20
-        MEDIUM = 10
-        HIGH = 00
+        LOW = 30
+        ELEVATED = 20
+        HIGHEST = 10
 
-    priority = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.NONE)
+    priority = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.LOW)
 
 
     # Relational fields
