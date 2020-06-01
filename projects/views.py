@@ -6,6 +6,7 @@ from django.views.generic import CreateView
 
 from .models import Project, Feature
 from .forms import ProjectForm, FeatureForm, SubtaskForm
+from teams.models import Team
 
 # Create your views here.
 # done test view
@@ -87,10 +88,14 @@ def new_feature_view(request, project_id):
 
 @login_required
 def project_view(request):
-    data_p = Project.objects.all()
+    #get teams the user is a member of
+    user_teams = request.user.account.team_set.all()
+
+    #get project the user is working on
+    user_projects = Project.objects.filter(project_team__in=user_teams)
 
     context = {
-        "project_data": data_p,
+        "project_data": user_projects,
     }
     return render(request, "projects/projects.html", context)
 
@@ -115,27 +120,43 @@ def detail_project_view(request, project_id):
 @login_required
 def new_project_view(request):
     if request.method == 'GET':
-        context = {'form': ProjectForm()}
+        form = ProjectForm(request.user) #create form
+        teams = request.user.account.team_set.all() # query all teams user is on
+
+        context = {
+            'form': form,
+            "teams": teams,
+        }
         return render(request, 'projects/new_project.html', context)
 
     if request.method == 'POST':
-        form = ProjectForm(request.POST)
-
+        form = ProjectForm(request.user, request.POST)
+        
         if not form.is_valid():
-            context = {'form':form}
+            print(form.errors)
+            form = ProjectForm(request.user)  # create form
+            teams = request.user.account.team_set.all()  # query all teams user is on
+
+            context = {
+                'form': form,
+                "teams": teams,
+            }
             # put the error message in here
-            return render(request, 'accounts/new_project.html', context)
+            return render(request, 'projects/new_project.html', context)
 
         name = request.POST['name']
         description = request.POST['description']
         start_date = request.POST['start_date']
         due_date = request.POST['due_date']
         budget = request.POST['budget']
+        team_id = request.POST["project_team"]
+        project_team = Team.objects.get(id=team_id)
 
         try:
             Project.objects.create(name=name, description=description,
                                    start_date=start_date, due_date=due_date, 
-                                   budget=budget)
+                                   budget=budget, project_team=project_team)
+
             # Check where this redirects
             return HttpResponseRedirect('/projects')
         except Error as err:
