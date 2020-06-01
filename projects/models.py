@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from teams.models import Team
+from accounts.models import Account
 
 # Create your models here.
 class Project(models.Model):
@@ -136,7 +137,7 @@ class Subtasks(models.Model):
     )
 
     tasker = models.ForeignKey(
-        User,
+        Account,
         on_delete=models.CASCADE,
         related_name='assigned_tasker',
         null=True,

@@ -1,12 +1,13 @@
 from django.http import HttpResponseRedirect, HttpResponseNotAllowed
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.contrib.auth.decorators import login_required
 from django.db import Error
 from django.views.generic import CreateView
 
-from .models import Project, Feature
+from .models import Project, Feature, Subtasks
 from .forms import ProjectForm, FeatureForm, SubtaskForm
 from teams.models import Team
+from accounts.models import Account
 
 # Create your views here.
 # done test view
@@ -45,8 +46,36 @@ def feature_view(request):
 @login_required
 def new_subtask_view(request, project_id, feature_id):
     if request.method == 'GET':
-        context = {'form': SubtaskForm()}
+        
+        form = SubtaskForm(project_id)
+        context = {'form': form}
         return render(request, 'projects/new_subtask.html', context)
+
+    if request.method == "POST":
+        form = SubtaskForm(project_id, request.POST)
+
+        if not form.is_valid():
+            # if form not valid, re-render form
+            form = SubtaskForm(project_id)
+            context = {'form': form}
+            return render(request, 'projects/new_subtask.html', context)
+
+        # if form is valid, get data and create subtask
+        name = request.POST["name"]
+        comment = request.POST["comment"]
+        due_date = request.POST["due_date"]
+
+        tasker_id = request.POST["tasker"]
+        tasker = Account.objects.get(id=tasker_id)
+
+        feature = Feature.objects.get(id=feature_id)
+
+        try:
+            Subtasks.objects.create(name=name, comment=comment, tasker=tasker, feature=feature, due_date=due_date)
+            return HttpResponseRedirect('/projects')
+        except Error as err:
+            context = {'error': str(err), 'form': form}
+            return render(request, 'projects/new_subtask.html', context)
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
@@ -133,7 +162,6 @@ def new_project_view(request):
         form = ProjectForm(request.user, request.POST)
         
         if not form.is_valid():
-            print(form.errors)
             form = ProjectForm(request.user)  # create form
             teams = request.user.account.team_set.all()  # query all teams user is on
 

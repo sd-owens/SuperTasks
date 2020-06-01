@@ -2,7 +2,7 @@ from django.forms import modelform_factory
 from .models import Project, Feature, Subtasks
 from django.forms import modelform_factory, ModelForm
 from django import forms
-from .models import Project, Feature
+from .models import Project, Feature, Subtasks
 from teams.models import Team
 
 #Automatically creates a form from the model
@@ -30,7 +30,21 @@ FeatureForm = modelform_factory(
     fields=("name", "description", "due_date"),
 )
 
-SubtaskForm = modelform_factory(
-    Subtasks,
-    fields=("name", "comment", "due_date"),
-)
+# SubtaskForm = modelform_factory(
+#     Subtasks,
+#     fields=("name", "comment", "due_date"),
+# )
+
+class SubtaskForm(ModelForm):
+    class Meta:
+        model = Subtasks
+        fields = fields = ("name", "comment", "tasker", "due_date")
+
+    def __init__(self, project_id, *args, **kwargs):
+        super(SubtaskForm, self).__init__(*args, **kwargs)
+
+        project_team = Project.objects.get(id=project_id).project_team #get the project
+
+        self.fields["tasker"] = forms.ModelChoiceField(
+            queryset=project_team.accounts.all()
+        )

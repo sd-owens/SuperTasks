@@ -36,43 +36,37 @@
                     <tr>
                         <td class="active"><b>Team</b></td>
                         <td class="active">{{ project_data.project_team }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr>
                     <tr>
                         <td class="active"><b>Name</b></td>
                         <td class="active">{{ project_data.name }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr> 
                     <tr>
                         <td class="active"><b>Description</b></td>
                         <td class="active">{{ project_data.description }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr> 
                     <tr>
                         <td class="active"><b>Due Date</b></td>
                         <td class="active">{{ project_data.due_date }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr> 
                     <tr>
                         <td class="active"><b>Budget</b></td>
                         <td class="active">{{ project_data.budget }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr> 
                     <tr>
                         <td class="active"><b>Status</b></td>
                         <td class="active">{{ project_data.get_status_display }}</td>
-                        <td class="info"><button>edit</button></td>
                     </tr>              
                 </table>
                 <form id="login-form" method="post" action=""> {% csrf_token %}
                 <span class="form-button-container">
-                    <input class="form-button submit" type="submit" value="Complete">
+                    <input class="form-button submit" type="submit" value="Mark Project Completed">
                 </span>
                 </form>
             </div>
         </div>
         <h5><p>Features</p></h5>
-        {% for feature in project_data.feature_set.all %}
+        {% for feature in project_data.feature_set.all %} 
             <div class="col-xs-12 col-md-8">
                 <div class="card card-project">
                     <div class="card-header">
@@ -83,31 +77,32 @@
                             <tr>
                                 <td class="active"><b>Feature Name</b></td>
                                 <td class="active">{{ feature.name }}</td>
-                                <td class="info"><button>edit</button></td>
                             </tr> 
                             <tr>
                                 <td class="active"><b>Description</b></td>
                                 <td class="active">{{ feature.description }}</td>
-                                <td class="info"><button>edit</button></td>
                             </tr> 
                             <tr>
                                 <td class="active"><b>Due Date</b></td>
                                 <td class="active">{{ feature.due_date }}</td>
-                                <td class="info"><button>edit</button></td>
                             </tr> 
                             <tr>
                                 <td class="active"><b>Status</b></td>
                                 <td class="active">{{ feature.get_status_display }}</td>
-                                <td class="info"><button>edit</button></td>
                             </tr>  
                         </table>
                     </div>
                     <div class="form-container">
-                        <table>
-                            {% for subtask in feature.subtask_set.all %}
+                        <table class="table table-bordered">
                             <tr>
+                                <td class="active"><b>Subtask Name</b></td>
+                                <td class="active"><b>Status</b></td>
+                            </tr>
+                            {% for subtask in feature.subtasks_set.all %}
+                            <tr>
+                                <td class="active">{{ subtask.name }}</td>
                                 <td class="active">{{ subtask.get_status_display }}</td>
-                                <td class="info"><button>edit</button></td>
+                                <td class="info"><button>Update Status</button></td>
                             </tr>
                             {% endfor %}     
                             <tr>
@@ -124,7 +119,7 @@
             {% for feature in feature_data %}
             <div class="card card-project">
                 <div class="card-header">
-                    <h5 class="card-title">{{ feature_data.name }}</h5>
+                    <h5 class="card-title">{{ feature.name }}</h5>
                 </div>
                 <div class="card-body">
                     <p class="card-text">{{ feature.description }}</p>
