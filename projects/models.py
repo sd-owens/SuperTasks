@@ -126,6 +126,7 @@ class Subtasks(models.Model):
     class SubtaskStatus(models.IntegerChoices):
         "Enum to save as the feature status"
         TO_DO = 0
+        IN_PROGRESS = 5
         DONE = 10
 
     status = models.IntegerField(choices=SubtaskStatus.choices, default=SubtaskStatus.TO_DO)

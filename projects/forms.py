@@ -23,6 +23,11 @@ class ProjectForm(ModelForm):
             queryset=user.account.team_set.all()
         )
     
+class UpdateProjectForm(ModelForm):
+    class Meta:
+        model = Project
+        fields = ("name", "description", "start_date", "due_date", "budget", "status")
+
 
 
 FeatureForm = modelform_factory(
@@ -35,10 +40,16 @@ FeatureForm = modelform_factory(
 #     fields=("name", "comment", "due_date"),
 # )
 
+class UpdateFeatureForm(ModelForm):
+    class Meta:
+        model = Feature
+        fields = ("name", "description", "status", "due_date")
+
+
 class SubtaskForm(ModelForm):
     class Meta:
         model = Subtasks
-        fields = fields = ("name", "comment", "tasker", "due_date")
+        fields = ("name", "comment", "tasker", "due_date")
 
     def __init__(self, project_id, *args, **kwargs):
         super(SubtaskForm, self).__init__(*args, **kwargs)
@@ -48,3 +59,8 @@ class SubtaskForm(ModelForm):
         self.fields["tasker"] = forms.ModelChoiceField(
             queryset=project_team.accounts.all()
         )
+
+class UpdateSubtaskStatusForm(ModelForm):
+    class Meta:
+        model = Subtasks
+        fields = ("status",)

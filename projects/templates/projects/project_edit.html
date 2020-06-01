@@ -30,6 +30,7 @@
             </div>
             <div class="card-header">
                 <h5 class="card-title">Project #{{ project_data.id }}</h5>
+                <a href="{% url 'update_project' project_data.id %}">UPDATE PROJECT</a>
             </div>
             <div class="form-container">
                 <table class="table table-bordered">
@@ -71,6 +72,7 @@
                 <div class="card card-project">
                     <div class="card-header">
                         <h5 class="card-title">Feature #{{ feature.id }}</h5>
+                        <a href="/projects/{{ project_data.id }}/features/{{ feature.id }}/update_feature">UPDATE FEATURE</a>
                     </div>
                     <div class="form-container">
                         <table class="table table-bordered">
@@ -96,13 +98,15 @@
                         <table class="table table-bordered">
                             <tr>
                                 <td class="active"><b>Subtask Name</b></td>
+                                <td class="active"><b>Description</b></td>
                                 <td class="active"><b>Status</b></td>
                             </tr>
                             {% for subtask in feature.subtasks_set.all %}
                             <tr>
                                 <td class="active">{{ subtask.name }}</td>
+                                <td class="active">{{ subtask.comment }}</td>
                                 <td class="active">{{ subtask.get_status_display }}</td>
-                                <td class="info"><button>Update Status</button></td>
+                                <td class="active"><a href="/projects/{{ project_data.id }}/features/{{ feature.id }}/update_subtask_status/{{subtask.id}}">Update Status</a></td>
                             </tr>
                             {% endfor %}     
                             <tr>

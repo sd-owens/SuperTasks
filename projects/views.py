@@ -5,7 +5,7 @@ from django.db import Error
 from django.views.generic import CreateView
 
 from .models import Project, Feature, Subtasks
-from .forms import ProjectForm, FeatureForm, SubtaskForm
+from .forms import ProjectForm, FeatureForm, SubtaskForm, UpdateSubtaskStatusForm, UpdateProjectForm, UpdateFeatureForm
 from teams.models import Team
 from accounts.models import Account
 
@@ -43,6 +43,9 @@ def feature_view(request):
     }
     return render(request, "projects/project.html", context)
 
+###
+### CREATE A NEW SUBTASK FOR A FEATURE
+###
 @login_required
 def new_subtask_view(request, project_id, feature_id):
     if request.method == 'GET':
@@ -72,10 +75,51 @@ def new_subtask_view(request, project_id, feature_id):
 
         try:
             Subtasks.objects.create(name=name, comment=comment, tasker=tasker, feature=feature, due_date=due_date)
-            return HttpResponseRedirect('/projects')
+            return redirect("projects_detail", project_id)
         except Error as err:
             context = {'error': str(err), 'form': form}
             return render(request, 'projects/new_subtask.html', context)
+
+    # Return HTTP 405 Method Not Allowed
+    return HttpResponseNotAllowed(['POST', 'GET'])
+
+###
+### UPDATE SUBTASK STATUS
+###
+@login_required
+def update_subtask_status(request, project_id, feature_id, subtask_id):
+    #get subtask
+    subtask = Subtasks.objects.get(id=subtask_id)
+
+    if request.method == "GET":
+        form = UpdateSubtaskStatusForm(instance=subtask)
+
+        context = {
+            "subtask": subtask,
+            "form": form,
+        }
+
+        #render update_subtask_status form
+        return render(request, "projects/update_subtask_status.html", context)
+
+    if request.method == "POST":
+        form = UpdateSubtaskStatusForm(request.POST, instance=subtask)
+
+        if form.is_valid():
+            # if form is valid, save updates
+            form.save()
+            return redirect("projects_detail", project_id)
+        else:
+            #otherwise re render form
+            form = UpdateSubtaskStatusForm(instance=subtask)
+
+            context = {
+                "subtask": subtask,
+                "form": form,
+            }
+
+            #render update_subtask_status form
+            return render(request, "projects/update_subtask_status.html", context)
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
@@ -107,7 +151,7 @@ def new_feature_view(request, project_id):
                 project=project,
                 assignee_id=None
             )
-            return HttpResponseRedirect('/projects')
+            return redirect("projects_detail", project_id)
         except Error as err:
             context = {'error': str(err), 'form':form}
             return render(request, 'projects/new_feature.html', context)
@@ -190,6 +234,74 @@ def new_project_view(request):
         except Error as err:
             context = {'error': str(err), 'form':form}
             return render(request, 'projects/new_project.html', context)
+
+    # Return HTTP 405 Method Not Allowed
+    return HttpResponseNotAllowed(['POST', 'GET'])
+
+###
+### UPDATE AN EXISTING PROJECT
+###
+def update_project_view(request, project_id):
+    project = Project.objects.get(id=project_id)
+
+    if request.method == "GET":
+        form = UpdateProjectForm(instance=project)
+
+        context = {
+            "project": project,
+            "form": form,
+        }
+
+        return render(request, "projects/update_project.html", context)
+
+    if request.method == "POST":
+        form = UpdateProjectForm(request.POST, instance=project)
+
+        if form.is_valid():
+            form.save()
+            return redirect("projects_detail", project_id)
+        else:
+            context = {
+                "project": project,
+                "form": form,
+            }
+
+            return render(request, "projects/update_project.html", context)
+
+    # Return HTTP 405 Method Not Allowed
+    return HttpResponseNotAllowed(['POST', 'GET'])
+
+###
+### UPDATE AN EXISTING FEATURE
+###
+def update_feature_view(request, project_id, feature_id):
+    feature = Feature.objects.get(id=feature_id)
+
+    if request.method == "GET":
+        form = UpdateFeatureForm(instance=feature)
+
+        context = {
+            "feature": feature,
+            "form": form 
+        }
+
+        return render(request, "projects/update_feature.html", context)
+
+    if request.method == "POST":
+        form = UpdateFeatureForm(request.POST, instance=feature)
+
+        if form.is_valid():
+            form.save()
+            return redirect("projects_detail", project_id)
+        else:
+            form = UpdateFeatureForm(instance=feature)
+
+            context = {
+                "feature": feature,
+                "form": form
+            }
+
+            return render(request, "projects/update_feature.html", context)
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
