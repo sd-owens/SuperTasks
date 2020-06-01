@@ -6,7 +6,8 @@ from django.views.generic import CreateView
 
 from .models import Project, Feature, Subtasks
 from teams.models import Team
-from .forms import ProjectForm, FeatureForm
+from .forms import ProjectForm, FeatureForm, SubtaskForm
+#from .serializers import ProjectSerializer
 
 # Create your views here.
 # done test view
@@ -98,7 +99,6 @@ def project_view(request):
         "project_data": user_projects,
     }
     return render(request, "projects/projects.html", context)
-
 
 @login_required
 def detail_project_view(request, project_id):
