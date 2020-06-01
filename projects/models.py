@@ -49,7 +49,7 @@ class Project(models.Model):
     
     #members = models.ManyToManyField(User)
     # each project will be linked to a team
-    project_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    project_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=None)
 
     def is_overdue(self):
         "Returns True if today is greater than the Due Date and the project is not completed."
