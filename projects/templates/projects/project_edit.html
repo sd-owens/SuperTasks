@@ -102,12 +102,14 @@
                         <table class="table table-bordered">
                             <tr>
                                 <td class="active"><b>Subtask Name</b></td>
+                                <td class="active"><b>Tasker</b></td>
                                 <td class="active"><b>Description</b></td>
                                 <td class="active"><b>Status</b></td>
                             </tr>
                             {% for subtask in feature.subtasks_set.all %}
                             <tr>
                                 <td class="active">{{ subtask.name }}</td>
+                                <td class="active">{{ subtask.tasker }}</td>
                                 <td class="active">{{ subtask.comment }}</td>
                                 <td class="active">{{ subtask.get_status_display }}</td>
                                 <td class="active"><a href="/projects/{{ project_data.id }}/features/{{ feature.id }}/update_subtask_status/{{subtask.id}}">Update Status</a></td>
