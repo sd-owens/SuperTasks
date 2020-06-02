@@ -95,6 +95,16 @@ class Feature(models.Model):
         DONE = 20
 
     status = models.IntegerField(choices=FeatureStatus.choices, default=FeatureStatus.TO_DO)
+
+    class PriorityStatus(models.IntegerChoices):
+        "Enum to save as feature priority"
+        LOW = 30
+        ELEVATED = 20
+        HIGHEST = 10
+
+    priority = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.LOW)
+
+
     # Relational fields
     # Feature model will have a FK to the Project model and User model
     project = models.ForeignKey(

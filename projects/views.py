@@ -144,6 +144,7 @@ def new_feature_view(request, project_id):
         name = request.POST['name']
         description = request.POST['description']
         due_date = request.POST['due_date']
+        priority = request.POST['priority']
         #project = request.POST['project']
         project = Project.objects.get(id=project_id)
 
@@ -151,7 +152,8 @@ def new_feature_view(request, project_id):
             Feature.objects.create(
                 name=name, 
                 description=description, 
-                due_date=due_date, 
+                due_date=due_date,
+                priority=priority, 
                 project=project,
                 assignee_id=None
             )
@@ -180,8 +182,11 @@ def project_view(request):
 def detail_project_view(request, project_id):
     data_p = Project.objects.get(id=project_id)
 
+    sorted_f = data_p.feature_set.order_by('priority')
+
     context = {
         "project_data": data_p,
+        "sorted_features": sorted_f,
     }
     if request.method == 'POST':
         has_feature = data_p.set_to_done()

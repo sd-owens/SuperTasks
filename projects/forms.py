@@ -32,7 +32,7 @@ class UpdateProjectForm(ModelForm):
 
 FeatureForm = modelform_factory(
     Feature,
-    fields=("name", "description", "due_date"),
+    fields=("name", "description", "due_date", "priority"),
 )
 
 # SubtaskForm = modelform_factory(

@@ -67,7 +67,7 @@
             </div>
         </div>
         <h5><p>Features</p></h5>
-        {% for feature in project_data.feature_set.all %} 
+        {% for feature in sorted_features %}
             <div class="col-xs-12 col-md-8">
                 <div class="card card-project">
                     <div class="card-header">
@@ -87,6 +87,11 @@
                             <tr>
                                 <td class="active"><b>Due Date</b></td>
                                 <td class="active">{{ feature.due_date }}</td>
+                                <td class="info"><button>edit</button></td>
+                            </tr>
+                            <tr>
+                                <td class="active"><b>Priority</b></td>
+                                <td class="active">{{ feature.get_priority_display }}</td>
                             </tr> 
                             <tr>
                                 <td class="active"><b>Status</b></td>
