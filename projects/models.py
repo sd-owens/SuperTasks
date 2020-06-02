@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from teams.models import Team
+from accounts.models import Account
 
 # Create your models here.
 class Project(models.Model):
@@ -125,6 +126,7 @@ class Subtasks(models.Model):
     class SubtaskStatus(models.IntegerChoices):
         "Enum to save as the feature status"
         TO_DO = 0
+        IN_PROGRESS = 5
         DONE = 10
 
     status = models.IntegerField(choices=SubtaskStatus.choices, default=SubtaskStatus.TO_DO)
@@ -136,11 +138,10 @@ class Subtasks(models.Model):
     )
 
     tasker = models.ForeignKey(
-        User,
+        Account,
         on_delete=models.CASCADE,
         related_name='assigned_tasker',
         null=True,
         blank=True,
         default=None
     )
-
