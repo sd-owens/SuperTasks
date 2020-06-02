@@ -41,7 +41,9 @@
             <input class="form-button submit" type="submit" value="Update Status">
         </span>
     </form>
-
+    <span class="form-button-container">
+        <a href="/projects/{{subtask.feature.project.id}}" class="btn btn-primary btn-md">Cancel</a>
+    </span>
     {{ form.errors }}
     {{ error }}
 </div>
