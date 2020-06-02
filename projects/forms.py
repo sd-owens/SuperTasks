@@ -43,7 +43,7 @@ FeatureForm = modelform_factory(
 class UpdateFeatureForm(ModelForm):
     class Meta:
         model = Feature
-        fields = ("name", "description", "status", "due_date")
+        fields = ("name", "description", "status", "priority", "due_date")
 
 
 class SubtaskForm(ModelForm):

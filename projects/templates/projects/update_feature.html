@@ -39,7 +39,11 @@
         </span>
         <span class="form-input-container">
             <i class="form-field-icon far fa-edit fa-lg"></i>
-            {{form.status|add_class:"form-input-field"|attr:"placeholder:Due Date"}}
+            {{form.status|add_class:"form-input-field"|attr:"placeholder:status"}}
+        </span>
+        <span class="form-input-container">
+            <i class="form-field-icon fas fa-exclamation fa-lg"></i>
+            {{form.priority|add_class:"form-input-field"|attr:"placeholder:Priority"}}
         </span>
         <span class="form-input-container">
             <i class="form-field-icon far fa-calendar-alt fa-lg"></i>
