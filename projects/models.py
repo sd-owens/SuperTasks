@@ -3,6 +3,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 from teams.models import Team
+from accounts.models import Account
 
 # Create your models here.
 class Project(models.Model):
@@ -49,7 +50,7 @@ class Project(models.Model):
     
     #members = models.ManyToManyField(User)
     # each project will be linked to a team
-    project_team = models.ForeignKey(Team, on_delete=models.CASCADE)
+    project_team = models.ForeignKey(Team, on_delete=models.CASCADE, default=None)
 
     def is_overdue(self):
         "Returns True if today is greater than the Due Date and the project is not completed."
@@ -73,8 +74,7 @@ class Project(models.Model):
     # milestones
     # to-do items
 
-# Create your models here. 
-#TODO create an add feature button to the projects page.
+
 class Feature(models.Model):
     """Model describing a Feature
     For a Feature has a foreign key
@@ -95,6 +95,16 @@ class Feature(models.Model):
         DONE = 20
 
     status = models.IntegerField(choices=FeatureStatus.choices, default=FeatureStatus.TO_DO)
+
+    class PriorityStatus(models.IntegerChoices):
+        "Enum to save as feature priority"
+        LOW = 30
+        ELEVATED = 20
+        HIGHEST = 10
+
+    priority = models.IntegerField(choices=PriorityStatus.choices, default=PriorityStatus.LOW)
+
+
     # Relational fields
     # Feature model will have a FK to the Project model and User model
     project = models.ForeignKey(
@@ -105,6 +115,42 @@ class Feature(models.Model):
         User,
         on_delete=models.CASCADE,
         related_name='assigned_user',
+        null=True,
+        blank=True,
+        default=None
+    )
+ 
+
+class Subtasks(models.Model):
+    """Model describing a Subtasks
+    For a subtask has a foreign key
+    to the Feature - each Subtask has one Feature it is under.
+    For a Subtask has a foreign key
+    to the User - each Subtask has one assigned user.
+    """
+    # Basic data type fields
+    name = models.CharField(max_length=256)
+    comment = models.TextField()
+    due_date = models.DateField()
+
+    class SubtaskStatus(models.IntegerChoices):
+        "Enum to save as the feature status"
+        TO_DO = 0
+        IN_PROGRESS = 5
+        DONE = 10
+
+    status = models.IntegerField(choices=SubtaskStatus.choices, default=SubtaskStatus.TO_DO)
+    # Relational fields
+    # Subtask model will have a FK to the Feature model and User model
+    feature = models.ForeignKey(
+        Feature,
+        on_delete=models.CASCADE
+    )
+
+    tasker = models.ForeignKey(
+        Account,
+        on_delete=models.CASCADE,
+        related_name='assigned_tasker',
         null=True,
         blank=True,
         default=None

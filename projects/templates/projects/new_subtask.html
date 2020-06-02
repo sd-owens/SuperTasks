@@ -3,7 +3,7 @@
 {% load widget_tweaks %}
 
 {% block title %}
-    <title>Create a new feature</title>
+    <title>Create a new subtask</title>
 {% endblock %}
 
 {% block style %}
@@ -23,27 +23,25 @@
             <div class="form-title-container">
                 <h1 class="form-logo">SuperTasks <i class="fas fa-tasks"></i></h1>
                 <hr class="form-logo">
-                <h3>Create Feature</h3>
+                <h3>Create Subtask</h3>
             </div>
             <form id="login-form" method="post" action=""> {% csrf_token %}
                 <!-- "name", "description", "start_date", "due_date", "budget" -->
                 <span class="form-input-container">
                     <i class="form-field-icon fas fa-signature fa-lg"></i>
-                    <!-- <input class="form-input-field" type="text" name="username" placeholder="Username" required> -->
-                    {{form.name|add_class:"form-input-field"|attr:"placeholder:Feature Name"}}
+                    {{form.name|add_class:"form-input-field"|attr:"placeholder:Subtask Name"}}
                 </span>
                 <span class="form-input-container">
                     <i class="form-field-icon fas fa-sticky-note fa-lg"></i>
-                    {{form.description|add_class:"form-input-field"|attr:"placeholder:Feature Description"|attr:"rows:4"}}
+                    {{form.comment|add_class:"form-input-field"|attr:"placeholder:Subtask Comment"|attr:"rows:3"}}
+                </span>
+                <span class="form-input-container">
+                    <i class="form-field-icon fas fa-user fa-lg"></i>
+                    {{form.tasker|add_class:"form-input-field"|attr:"placeholder:Asignee"}}
                 </span>
                 <span class="form-input-container">
                     <i class="form-field-icon fas fa-lock fa-lg"></i>
                     {{form.due_date|add_class:"form-input-field"|attr:"placeholder:Due Date"}}
-                </span>
-                <h3 class="text-center">Set Priority</h3>
-                <span class="form-input-container">
-                        <i class="form-field-icon fas fa-exclamation-triangle fa-lg"></i>
-                        {{form.priority|add_class:"form-input-field"|attr:"placeholder:Priority"}}
                 </span>
                 <span class="form-button-container">
                     <input class="form-button submit" type="submit" value="Create">

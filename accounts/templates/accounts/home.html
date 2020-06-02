@@ -69,6 +69,20 @@
             <div class="header">
                 <h1>Tasks</h1>
             </div>
+            <div class="task-list">
+                {% if tasks %}
+                    {% for task in tasks %}
+                        <div class="team-preview">
+                            <h3>{{task.name}}</h3>
+                            <a href="/projects/{{task.feature.project.id}}/features/{{task.feature.id}}/update_subtask_status/{{task.id}}"><i class="far fa-edit"></i></i></a>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="team-preview">
+                        <h3>You do not have any assigned tasks yet.</h3>
+                    </div>
+                {% endif %}
+            </div>
         </div>
     </div>
     <div class="container projects">
