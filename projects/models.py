@@ -63,6 +63,8 @@ class Project(models.Model):
         self.save()
         has_feature = False
         self.feature_set.all().update(status=Feature.FeatureStatus.DONE)
+        for feature_idx in self.feature_set.all():
+            feature_idx.subtasks_set.all().update(status=Subtasks.SubtaskStatus.DONE)
         if (self.feature_set.all().count() > 0):
             has_feature = True
         return has_feature
