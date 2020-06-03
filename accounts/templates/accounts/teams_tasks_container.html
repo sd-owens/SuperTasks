@@ -1,0 +1,47 @@
+{% load static %}
+<div class="container teams-tasks">
+    <div class="teams">
+        <div class="header">
+            <h1>Teams</h1>
+        </div>
+        <div class="list">
+            {% if teams %}
+            {% for team in teams %}
+            <div class="preview">
+                <h3>{{team}}</h3>
+                <a href="{% url 'team' team.id %}"><i class="fas fa-user-edit"></i></a>
+            </div>
+            {% endfor%}
+            {% else %}
+            <div class="preview">
+                <h3>You are not a member of any teams</h3>
+                <a href="{% url 'new_team' %}"><i class="fas fa-plus-circle"></i></a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="tasks">
+        <div class="header">
+            <h1>Tasks</h1>
+        </div>
+        <div class="list">
+            {% if tasks %}
+            {% for task in tasks %}
+            <div class="preview">
+                <div class="task-preview">
+                    <h3>{{task.name}}</h3>
+                    <P>{{task.get_status_display}}</P>
+                </div>
+                <a
+                    href="/projects/{{task.feature.project.id}}/features/{{task.feature.id}}/update_subtask_status/{{task.id}}"><i
+                        class="far fa-edit"></i></i></a>
+            </div>
+            {% endfor %}
+            {% else %}
+            <div class="preview">
+                <h3>You do not have any assigned tasks yet.</h3>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
