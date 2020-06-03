@@ -1,0 +1,58 @@
+{% load static %}
+<div class="feature">
+
+
+        <div class="card-header">
+            <h5 class="card-title">Feature: {{ feature.name }}</h5>
+            <a href="/projects/{{ project_data.id }}/features/{{ feature.id }}/update_feature">UPDATE FEATURE</a>
+        </div>
+
+        <div class="table-container">
+            <table class="table table-bordered">        
+                <tr>
+                    <td class="active"><b>Description</b></td>
+                    <td class="active">{{ feature.description }}</td>
+                </tr>
+                <tr>
+                    <td class="active"><b>Due Date</b></td>
+                    <td class="active">{{ feature.due_date }}</td>
+                </tr>
+                <tr>
+                    <td class="active"><b>Priority</b></td>
+                    <td class="active">{{ feature.get_priority_display }}</td>
+                </tr>
+                <tr>
+                    <td class="active"><b>Status</b></td>
+                    <td class="active">{{ feature.get_status_display }}</td>
+                </tr>
+            </table>
+        </div>
+
+        <div class="table-container">
+            <div class="card-header">
+                <h5 class="card-title">Subtasks</h5>
+                <a class="new-subtask" href="/projects/{{ project_data.id }}/features/{{ feature.id }}/new_subtask"
+                    class="btn btn-primary btn-sm">+ New Subtask</a>
+            </div>
+            <table class="table table-bordered">
+                <tr>
+                    <td class="active"><b>Subtask Name</b></td>
+                    <td class="active"><b>Tasker</b></td>
+                    <td class="active"><b>Description</b></td>
+                    <td class="active"><b>Status</b></td>
+                </tr>
+                {% for subtask in feature.subtasks_set.all %}
+                <tr>
+                    <td class="active">{{ subtask.name }}</td>
+                    <td class="active">{{ subtask.tasker }}</td>
+                    <td class="active">{{ subtask.comment }}</td>
+                    <td class="active">{{ subtask.get_status_display }}</td>
+                    <td class="active"><a
+                            href="/projects/{{ project_data.id }}/features/{{ feature.id }}/update_subtask_status/{{subtask.id}}">Update
+                            Status</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+
+</div>

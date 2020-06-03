@@ -1,0 +1,24 @@
+{% load static %}
+
+<div class="container account">
+
+    <img class="profile-picture" src="{{account.profile_picture.url}}" alt="">
+
+    <div class="account-info">
+        <span class="account-info-field">
+            <h3>Username: </h3> {{account.username}}
+        </span>
+        <span class="account-info-field">
+            <h3>Email: </h3> {{account.email}}
+        </span>
+        <span class="account-info-field">
+            <h3>First Name: </h3> {{account.first_name}}
+        </span>
+        <span class="account-info-field">
+            <h3>Last Name: </h3> {{account.last_name}}
+        </span>
+    </div>
+
+    <a class="update-button" href="{% url 'settings' %}">Update Account</a>
+
+</div>

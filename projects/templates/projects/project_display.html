@@ -1,0 +1,48 @@
+{% load static %}
+<div class="container project-container">
+
+    <div class="title">
+        <h1>Project Management</h1>
+    </div>
+
+    <div class="card-header">
+        <h5 class="card-title">{{ project_data.name }}</h5>
+        <a href="{% url 'update_project' project_data.id %}">UPDATE PROJECT</a>
+        <form id="mark-completed-form" method="post" action=""> {% csrf_token %}
+            <span class="form-button-container">
+                <input class="form-button submit" type="submit" value="Mark Project Completed">
+            </span>
+        </form>
+    </div>
+
+    <div class="table-container">
+        <table class="table table-bordered">
+            <tr>
+                <td class="active"><b>Team</b></td>
+                <td class="active">{{ project_data.project_team }}</td>
+            </tr>
+            <tr>
+                <td class="active"><b>Description</b></td>
+                <td class="active">{{ project_data.description }}</td>
+            </tr>
+            <tr>
+                <td class="active"><b>Due Date</b></td>
+                <td class="active">{{ project_data.due_date }}</td>
+            </tr>
+            <tr>
+                <td class="active"><b>Budget</b></td>
+                <td class="active">{{ project_data.budget }}</td>
+            </tr>
+            <tr>
+                <td class="active"><b>Status</b></td>
+                <td class="active">{{ project_data.get_status_display }}</td>
+            </tr>
+            <tr>
+                <td class="active"><b>Features</b></td>
+                <td class="active">{{ sorted_features|length }}</td>
+            </tr>
+        </table>
+        
+    </div>
+
+</div>
