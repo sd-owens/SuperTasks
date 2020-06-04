@@ -79,7 +79,6 @@ def team_view(request, team_id):
     if request.method == 'POST':
 
         try:
-
             # create "set" of accounts to be added or removed
             edit_accounts = set(request.POST.getlist('accounts'))
 
@@ -106,11 +105,9 @@ def team_view(request, team_id):
 
             return HttpResponseRedirect('/teams')
 
-        #TODO this error does not redirect to correct location for failure to update a team.
-        except Error as err:
+        except Team.DoesNotExist:
 
-            context = {'error': str(err), 'form': form}
-            return render(request, 'teams/new_team.html', context)
+            return HttpResponseNotFound(f'404: Team {team_id} does not exist.')
 
     # Return HTTP 405 Method Not Allowed
     return HttpResponseNotAllowed(['POST', 'GET'])
