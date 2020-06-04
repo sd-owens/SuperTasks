@@ -66,36 +66,53 @@ def team_view(request, team_id):
 
         # Get a list of the member ids for pre-selecting the dropdown multi-select
         member_ids = [str(account.id) for account in team.accounts.all()]
-
+        print(member_ids)
         context = {
             'form': TeamForm(instance=team),
             'accounts': accounts,
             'is_new_team': False,
             'member_ids': member_ids,
         }
-        print("test")
         return render(request, "teams/team.html", context)
 
-    #TODO this method is not standard REST, need converted to PUT.
-    #TODO logic adds but does not remove users from the team.
+    #TODO this method is not standard REST, needs converted to PUT at future time.
     if request.method == 'POST':
-        # Replace with logic to update the existing team
 
-        form = TeamForm(request.POST)
+        # form = TeamForm(request.POST)
+        # name = request.POST['name']
+        
 
-        name = request.POST['name']
-        accounts = request.POST.getlist('accounts')
-        print(accounts)
         try:
-            team = Team.objects.get(id=team_id)
-            # print(team)
 
-            for account_id in accounts:
+            # create "set" of accounts to be added or removed
+            edit_accounts = set(request.POST.getlist('accounts'))
+            print(edit_accounts)
+
+            # existing team and team accounts
+            team = Team.objects.get(id=team_id)
+          
+            # create "set" of original accounts that exist in current team
+            orig_accounts = set([str(account.id) for account in team.accounts.all()])
+            print(orig_accounts)
+
+            # add accounts is the set difference of edit and original accounts
+            add_accounts = edit_accounts - orig_accounts
+
+            # remove accounts is the set set difference of original and edit accounts
+            remove_accounts = orig_accounts - edit_accounts
+
+            # iterate through the union of the two sets for each account_id
+            for account_id in add_accounts:
 
                 team.accounts.add(account_id)
 
+            for account_id in remove_accounts:
+                
+                team.accounts.remove(account_id)
+
             return HttpResponseRedirect('/teams')
 
+        #TODO this error does not redirect to correct location for failure to update a team.
         except Error as err:
 
             context = {'error': str(err), 'form': form}
