@@ -66,7 +66,7 @@ def team_view(request, team_id):
 
         # Get a list of the member ids for pre-selecting the dropdown multi-select
         member_ids = [str(account.id) for account in team.accounts.all()]
-        print(member_ids)
+        
         context = {
             'form': TeamForm(instance=team),
             'accounts': accounts,
