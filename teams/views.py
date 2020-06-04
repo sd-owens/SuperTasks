@@ -78,22 +78,16 @@ def team_view(request, team_id):
     #TODO this method is not standard REST, needs converted to PUT at future time.
     if request.method == 'POST':
 
-        # form = TeamForm(request.POST)
-        # name = request.POST['name']
-        
-
         try:
 
             # create "set" of accounts to be added or removed
             edit_accounts = set(request.POST.getlist('accounts'))
-            print(edit_accounts)
 
             # existing team and team accounts
             team = Team.objects.get(id=team_id)
           
             # create "set" of original accounts that exist in current team
             orig_accounts = set([str(account.id) for account in team.accounts.all()])
-            print(orig_accounts)
 
             # add accounts is the set difference of edit and original accounts
             add_accounts = edit_accounts - orig_accounts
