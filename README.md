@@ -267,8 +267,24 @@ For our application, when a project is marked complete by a user, all of its tas
   * local-requirements file to help with installing dependencies
   * manage.py file used to execute Django tasks to start the web application
   * files to aide in the automatic deployment to cloud when pushed to master.
-  * **Static** Contains our static design files for CSS JS and holds images[]()
-* []()
+  * **Static Folder** Contains our static design files for CSS JS and holds images[]()
+    * CSS, images, javascript, admin
+  * **Templates Folder** Contains the html code to create the homepages
+    * base.html, footer.html, index.html, navbar.html
+  * **teams Folder** Contains python code files to make the teams module work and two folders
+    * templates folder (contains the html code files to create the pages that will cover teams
+    * migrations folder
+  * **projects Folder** Contains python code files to make the projects module work and two folders
+    * templates folder (contains the html code files to create the pages that will cover projects
+    * migrations folder
+  * **accounts Folder** Contains python code files to make the accounts module work and two folders
+    * templates folder (contains the html code files to create the pages that will cover accounts
+    * migrations folder
+  * **SuperTasks Folder**
+    * Base urls.py file to redirect pages where the user wants to go
+    * Base views.py file to manage how redirecting works and how pages will be rendered
+    * tests to check if user is logged in or not and redirect
+    * settings.py file
 
 <!-- CONTINUING CONTRIBUTIONS -->
 
