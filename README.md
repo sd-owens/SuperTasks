@@ -206,6 +206,7 @@ This section explains briefly how to use the web application.
 
 ### General Usage
 <img src="static/images/Usage.gif" alt="Registration" width="900" height="800">
+
 <!-- QUALITY ATTRIBUTES -->
 ## Quality Attributes
 
