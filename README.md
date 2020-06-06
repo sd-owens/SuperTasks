@@ -1,74 +1,295 @@
-<h1>SuperTasks - A task management web application modeled after ASANA</h1>
+<!--
+*** Readme is written using reference style links for readability and maintainability
+*** Instead of parentheses () Reference links will be enclosed in brackets []
+*** https://www.markdownguide.org/basic-syntax/#reference-style-links
+-->
 
-<h2>CS361 Team 10 Project repository</h2>
-<h6>Group Members:</h6>
-<ul>
-    <li>Kevin Hill</li>
-    <li>David Mikulis</li>
-    <li>Steven Owens</li>
-    <li>Michael Hathaway</li>
-    <li>Craig Kelleher</li>
-</ul>
+<!-- PROJECT LOGO -->
+<br />
+<p align="center">
+  <a href="https://osu-cs361-supertasks.appspot.com/">
+    <img src="static/images/1.png" alt="Logo" width="80" height="80">
+  </a>
 
-<h6>Asana Team Page: https://app.asana.com/0/1167416800657633/overview</h6>
+  <h3 align="center">SuperTasks</h3>
 
-<hr>
-<h2>How do I access/run SuperTasks?</h2>
+  <p align="center">
+    A modern tool for managing projects
+    <br />
 
-<p> Our project can be accessed publically on the web at: https://osu-cs361-supertasks.appspot.com/ <sup>1</sup> </p>
-<p> Or if desired, a local instance can be setup as follows:</p>
-<p> <sup>1 </sup><sub>Project hosting provided by Google Cloud using the Google App Engine.</sub> </p>
+<!-- TABLE OF CONTENTS -->
+## Table of Contents
 
-<hr>
-
-<h2>Setting up a local development environment</h2>
-
-<h3>Note: if python3 is not aliased to python on your machine, replace “python” with “python3” in all of the references that follow</h3>
-
-<p><em>Requirements:</em></p>
-
-<ul>
-    <li>Python3 installed  https://www.python.org/downloads/</li>
-    <li>Verify PIP installed with Python3:  <strong>pip -V</strong></li>
-    <li>If not, install the lastest version with Python3:  <strong>python pip -m install –upgrade pip</strong></li>
-    <li>Install the virtual environment manager:  <strong>pip install virtualenv</strong></li>
-    <li>Create a virtual environment instance:  <strong>virtualenv venv</strong></li>
-    <li>Start the virtual environment:</li>
-    <li>&emsp;Windows10 <strong>~<source>\Scripts\Activate</strong></li>
-    <li>&emsp;MacOS/Linux <strong>source venv/bin/activate</strong></li>
-    <li>Stop the virtual environment: <strong>deactivate</strong></li>
-</ul>
-
-     
-<p><em>Clone the repo to your local machine.</em></p>
-<ul>
-    <li><strong>git clone git@github.com:craigkelleher/CS361-Team-10-Project-repository.git</strong></li>
-    <li>(optional) rename to something simpler:  <strong>mv ./CS361-Team-10-Project-repository/ ./SuperTasks</strong></li>
-    <li>Switch over the project root directory:  <strong>cd SuperTasks/</strong></li>
-</ul>
-
-<p><em>Install the modules for all dependencies in local-requirements.txt</em></p>
-<ul>
-    <li><strong>python -m pip install -r local-requirements.txt</strong></li>
-    <li>note: requirements.txt with the local prefix contains dependencies for the production version only and should not be used for local development unless mySQL server and a mySQL test database are setup. </li>
-</ul>
-
-<p><em>Setup development SQlite Database</em></p>
-<ul>
-    <li><strong>python manage.py makemigrations</strong> </li>
-    <li><strong>python manage.py migrate</strong></li>
-</ul>
-
-<p><em>Run the application</em></p>
-<ul>
-    <li><strong>python manage.py runserver</strong> </li>
-    <li>Navigate to <strong>localhost:8000</strong> in your web browser of choice.</li>
-</ul>
-
-<p><em>(optional)</em></p>
-<ul>
-    <li><strong>python manage.py createsuperuser</strong></li>
-    <li>Allows creation of a superuser account allowing access to <strong>localhost:8000/admin</strong> to view the development database.</li>
-</ul>
+* [About the Project](#about-the-project)
+  * [An overview of what the project is and what it is meant to accomplish](#overview)
+  * [Software's Main Features](#Main-Features)
+* [How to access and run SuperTasks](#how-to-access-and-run-supertasks)
+  * [Prerequisites to run project locally](#prerequisites)
+  * [Installation steps to install, build, run, and use the software](#installation)
+  * [Usage](#usage)
+* [Quality Attributes](#quality-attributes)
+* [Software Architecture and Design Overview](#architecture-and-design)
+  * [UML Sequence Diagram](#uml-sequence-diagram)
+  * [UML Component Diagram](#uml-component-diagram)
+  * [Google Cloud Architecture](#google-cloud-architecture)
+* [Design Patterns](#design-patterns)
+* [Final State of Software](#final-state-of-software)
+* [File Structure](#file-structure)
+  * [Known Bugs/Issues](#known-bugs-and-issues)
+  * [Product Backlog](#product-backlog)
+* [Continuing Contributions](#continuing-contributions)
 
 
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+<img src="static/images/screenshot.jfif" alt="screenshot" width="900" height="800">
+
+### Overview
+
+SuperTasks is a feature, A.K.A task, management web application that helps teams organize their work through a visual dashboard. 
+
+Teams and their members will be able to track what needs to be done, when it needs to be done by, and who is to complete the task. This is done through the heirarchy of a team where a team can have projects, a project can have features, and features can have subfeatures. Each of these are also summarized on the user's dashboard for quick view and they can click on one individually for more details on it.
+
+### Main Features
+ * Team Management
+  * Create teams
+  * Add members to your team
+  * Add projects to your team
+* Project Management
+  * Create a project
+  * Assign members to the project
+  * Status Updates
+    * not started, in-progress, stalled, under review, completed
+* Feature Management
+  * Creating Features
+  * Priority Status
+    * low, elevated, highest
+  * Creating Subfeatures
+  * Assinging Features to members
+  * Due Dates for seatures
+  * Start Dates
+  * Status Updates
+    * to do, done
+ * Dashboard Views
+  * Team View
+  * Features View
+  * Projects view
+
+
+
+
+<!-- GETTING STARTED -->
+## How to Access and Run SuperTasks
+The web application can be accessed publically at: [SuperTasks](https://osu-cs361-supertasks.appspot.com/)<sup>1</sup>
+
+Follow these steps if you want to get a local copy of this web application up and running.
+
+
+### Prerequisites
+
+This is an example of how to list things you need to use the software and how to install them.
+
+
+**Step 1:** Install Python 3: Go to https://www.python.org/downloads/ and download python version 3.6.
+  
+  
+  Verify PIP came installed with Python3:
+  ```sh
+  pip -V
+  ```
+  If not, download the get-pip.py file and ensure it is saved as .py:https://bootstrap.pypa.io/get-pip.py
+  ```sh
+  python pip -m install -upgrade pip
+  ```
+  Navigate to the folder it was downloaded to in command prompt and run:
+  ```sh
+  python get-pip.py
+  ```
+  You can verify the contents of your current directory using:
+  ```sh
+  dir
+  ```
+**Step 2:** Once you have PIP correctly installed, you can upgrade it if updates come out with the following command:
+  ```sh
+  python -m pip install --upgrade pip
+  ```
+  Now navigate back to the folder you want to install the project to.
+  
+**Step 3:** Install the virtual environement manager:
+  ```sh
+  pip install virtualenv
+  ```
+**Step 4:** Create a virtual environment instance:
+  ```sh
+  virtualenv venv
+  ```
+  
+**Step 5:** Start the virtual environment:
+
+   Windows:
+   ```sh
+   venv\scripts\activate
+   ```
+   MacOS/Linux:
+   ```sh
+   source venv/bin/activate
+   ```
+   If you wish to stop the virtual environment:
+   ```sh
+   deactivate
+   ```
+
+
+### Installation
+ 
+**Step 1:** Clone the repo
+```sh
+git clone https://github.com/craigkelleher/CS361-Team-10-Project-repository.git
+```
+(optional) Rename the file to something simpler: 
+  Windows: 
+  ```sh
+  ren CS361-Team-10-Project-repository SuperTasks
+  ```
+  MacOS/Linux: 
+  ```sh
+  mv ./CS361-Team-10-Project-repository/ ./SuperTasks
+  ```
+**Step 2:** Move to the project root directory
+```sh
+cd SuperTasks
+```
+or
+```sh
+cd CS361-Team-10-Project-repository/
+```
+
+**Step 3:** Install modules for all dependencies from our requirements.txt file
+```sh
+python -m pip install -r local-requirements.txt
+```
+
+**Step 4:** Setup Development SQlite Database for local machine use
+```sh
+python manage.py makemigrations
+```
+```sh
+python manage.py migrate
+```
+
+**Step 5 (Optional step):** Create  superuser (admin) to view the development database
+```sh
+python manage.py createsuperuser
+```
+
+**Step 6:** Run the application
+```sh
+python manage.py runserver
+```
+
+**Step 7:** Navigate to localhost:8000 in your web browser of choice.
+
+**Step 8 (Optional):** Stop running the application
+```sh
+Ctrl c
+```
+
+
+
+<!-- USAGE EXAMPLES -->
+## Usage
+
+This section explains briefly how to use the web application. 
+### Registration
+<img src="static/images/Registration.gif" alt="Registration" width="900" height="800">
+
+### General Usage
+<img src="static/images/Usage.gif" alt="Registration" width="900" height="800">
+<!-- QUALITY ATTRIBUTES -->
+## Quality Attributes
+
+1. **Reliability** – For our team it is more important that features work predictably and reliably for our customers, so we started with a limited number of core features to make sure they were done right. In our testing of its reliability, our goal was to ensure for example if a user invoked a feature 10 times, that it would succeed 100% of the time.
+2. **Testability** – Especially in the early days of this project’s development, we worked to ensure that features were easily testable and also thoroughly tested before being delivered to clients.
+3. **Learnability** – We desire to have intuitive features and ease of navigation to increase customer retention. The site should be relatively simple to navigate, easily learned, and visual cues are to be plentiful. 
+
+
+
+<!-- ARCHITECTURE -->
+## Architecture And Design
+
+### UML Sequence Diagram
+<img src="static/images/sequence.png" alt="screenshot" width="1000" height="550">
+
+### UML Component Diagram
+<img src="static/images/component.png" alt="screenshot" width="950" height="600">
+
+### Google Cloud Architecture
+<img src="static/images/architecture.png" alt="screenshot" width="910" height="740">
+
+
+
+<!-- DESIGN PATTERNS -->
+## Design Patterns
+
+**Observer**
+
+The software uses the design pattern of “observer” where a one-to-many dependency between objects is defined in that when one object changes status, all of its subordinate objects are updated with that status. 
+
+For our application, when a project is marked complete by a user, all of its tasks are also marked complete if they haven’t already been done so manually by the group.
+
+<!-- FINAL STATE OF SOFTWARE -->
+## Final State of Software
+ 
+### Known Bugs and Issues
+* Currently unable to edit tasks/subtasks after creation
+* Currently unable to delete tasks/subtasks/projects after creation
+*	Currently unable to remove people from a team after adding them
+* Projects and tasks are given unique id’s that are incremented iteratively across the site but not between teams, so a team may see projects #1-7, 10-15 for example while another team sees projects 8-9.
+
+### Product Backlog
+*	As a user I can upload a logo for a project so that the projects are more unique in the dashboard
+*	As a user I can assign Planning Points to my features so that I can better allocate my team's capacity to do work
+*	As a user I can assign Planning Points to my subtasks so that I can better allocate my team's capacity to do work
+*	As a user I want my user profile to contain my first and last name so that the app can greet me in a friendly way using my name
+*	As a user I can edit a team I am a member of so that I am able to manage that team
+*	As a user I can edit a subtask I am a member of so that I am able to manage that team
+*	As a user I can edit a feature I am a member of so that I am able to manage that team
+*	As a user I can edit a project I am a member of so that I am able to manage that team
+
+<!-- FILE STRUCTURE -->
+## File Structure
+
+* **Root Folder**
+  * The root folder contains access to all the other folders the application uses
+  * Readme file (this file)
+  * Migrations readme to describe how to troubleshoot any migrations with google cloud uploads
+  * local-requirements file to help with installing dependencies
+  * manage.py file used to execute Django tasks to start the web application
+  * files to aide in the automatic deployment to cloud when pushed to master.
+  * **Static** Contains our static design files for CSS JS and holds images[]()
+* []()
+
+<!-- CONTINUING CONTRIBUTIONS -->
+
+## Continuing Contributions
+
+   Developed by: 
+  `Michael Hathaway`, `Kevin Hill`, `Craig Kelleher`, `David Mikulis`, `Steven Owens`
+  
+1. How will members of your team and (optionally) new developers can contribute to the project in the future
+   * All members of the team can continue contributing to the project as they are now.
+   * All contributions are done on branches of master branch and pull requests must be checked/reviewed by another member of the group and go througha testing cycle before being approved by peers to be pushed to master.
+2. Who will be the keeper of the project? Multiple people? Nobody?
+   * All developers of this project are keepers of it, so currently 5 named contributers
+3. How do new people become contributers?
+    * New individuals can become contributers with majority support, and they would need to know that to push updates to master, they must have support from another reviewer/team member.
+4. What do they need to know?
+    * Pushing a branch to master automatically updates the web application to google cloud. Any testing should be done on the local system because of this before pushing to master.
+
+
+
+<sup>1 </sup><sub>Project hosting provided by Google Cloud using the Google App Engine.</sub>
+<!-- MARKDOWN LINKS & IMAGES -->
+<!-- https://www.markdownguide.org/basic-syntax/#reference-style-links -->
+[product-screenshot]: static/images/screenshot.jpg
