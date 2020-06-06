@@ -242,20 +242,15 @@ For our application, when a project is marked complete by a user, all of its tas
 ## Final State of Software
  
 ### Known Bugs and Issues
-* Currently unable to edit tasks/subtasks after creation
-* Currently unable to delete tasks/subtasks/projects after creation
-*	Currently unable to remove people from a team after adding them
-* Projects and tasks are given unique id’s that are incremented iteratively across the site but not between teams, so a team may see projects #1-7, 10-15 for example while another team sees projects 8-9.
+* Changing fields of a subtask, can update completion status and the name but not description
+* Unable to assinging a user to a feature but can assign users to subtask
+* Tasks on main page connects to subtask rather than features. To edit features, we have to go to manage project first and see the features and subtasks to edit them.
+* Unable to delete tasks/subtasks/projects after creation, can edit them and change people but not outright delete
+*	Unable to remove everyone from a team after adding them, can remove all but one user from a team
 
 ### Product Backlog
-*	As a user I can upload a logo for a project so that the projects are more unique in the dashboard
 *	As a user I can assign Planning Points to my features so that I can better allocate my team's capacity to do work
 *	As a user I can assign Planning Points to my subtasks so that I can better allocate my team's capacity to do work
-*	As a user I want my user profile to contain my first and last name so that the app can greet me in a friendly way using my name
-*	As a user I can edit a team I am a member of so that I am able to manage that team
-*	As a user I can edit a subtask I am a member of so that I am able to manage that team
-*	As a user I can edit a feature I am a member of so that I am able to manage that team
-*	As a user I can edit a project I am a member of so that I am able to manage that team
 
 <!-- FILE STRUCTURE -->
 ## File Structure
