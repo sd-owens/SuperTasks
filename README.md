@@ -243,10 +243,11 @@ For our application, when a project is marked complete by a user, all of its tas
 ## Final State of Software
  
 ### Known Bugs and Issues
-* Changing fields of a subtask, can update completion status and the name but not description
-* Unable to assinging a user to a feature but can assign users to subtask
-* Tasks on main page connects to subtask rather than features. To edit features, we have to go to manage project first and see the features and subtasks to edit them.
-* Unable to delete tasks/subtasks/projects after creation, can edit them and change people but not outright delete
+* Tasks on main page connects to subtasks, nothing connects to features until going to manage projects, so it almost looks like tasks are subtasks and that they are elevated above features.
+  * To edit features, we have to go to manage project first and see the features and subtasks to edit them.
+* Issue editing some fields of a subtask: can update completion status and the name, but not description of a subtask.
+* Unable to assign a user to a feature but can assign users to a subtask.
+* Unable to delete subtasks/features/projects/teams after creation.
 *	Unable to remove everyone from a team after adding them, can remove all but one user from a team
 
 ### Product Backlog
