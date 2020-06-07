@@ -92,6 +92,10 @@ This is an example of how to list things you need to use the software and how to
 
 
 **Step 1:** Install Python 3: Go to https://www.python.org/downloads/ and download python version 3.6.
+
+Note: On MacOS/Linux Python3 is likely already installed. You may substitute the following commands to use your system-installed version.
+`python` --> `python3`
+`pip`    --> `pip3`
   
   
   Verify PIP came installed with Python3:
@@ -145,24 +149,12 @@ This is an example of how to list things you need to use the software and how to
  
 **Step 1:** Clone the repo
 ```sh
-git clone https://github.com/craigkelleher/CS361-Team-10-Project-repository.git
+git clone https://github.com/craigkelleher/CS361-Team-10-Project-repository.git SuperTasks
 ```
-(optional) Rename the file to something simpler: 
-  Windows: 
-  ```sh
-  ren CS361-Team-10-Project-repository SuperTasks
-  ```
-  MacOS/Linux: 
-  ```sh
-  mv ./CS361-Team-10-Project-repository/ ./SuperTasks
-  ```
+
 **Step 2:** Move to the project root directory
 ```sh
 cd SuperTasks
-```
-or
-```sh
-cd CS361-Team-10-Project-repository/
 ```
 
 **Step 3:** Install modules for all dependencies from our requirements.txt file
@@ -173,8 +165,6 @@ python -m pip install -r local-requirements.txt
 **Step 4:** Setup Development SQlite Database for local machine use
 ```sh
 python manage.py makemigrations
-```
-```sh
 python manage.py migrate
 ```
 
@@ -238,6 +228,12 @@ This section explains briefly how to use the web application.
 The software uses the design pattern of “observer” where a one-to-many dependency between objects is defined in that when one object changes status, all of its subordinate objects are updated with that status. 
 
 For our application, when a project is marked complete by a user, all of its tasks are also marked complete if they haven’t already been done so manually by the group.
+
+A second example of the "observer" design pattern is when a new User is created, a corresponding Account object is also created. This pattern is accomplished using the "signals" feature in Django.
+
+**Decorator**
+
+The software uses a decorator for views that require the user to be logged in. The decorator provides an abstraction which checks the user's session value for authentication. The Gang of Four specifically described the decorator as relating to "classes" and we are not using "classes" for the views, however, the same principle applies to our view functions.
 
 <!-- FINAL STATE OF SOFTWARE -->
 ## Final State of Software
