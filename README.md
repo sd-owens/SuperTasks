@@ -290,7 +290,7 @@ For our application, when a project is marked complete by a user, all of its tas
    Developed by: 
   `Michael Hathaway`, `Kevin Hill`, `Craig Kelleher`, `David Mikulis`, `Steven Owens`
   
-1. How will members of your team and (optionally) new developers can contribute to the project in the future
+1. How will members of your team and (optionally) new developers contribute to the project in the future
    * All members of the team can continue contributing to the project as they are now.
    * All contributions are done on branches of master branch and pull requests must be checked/reviewed by another member of the group and go througha testing cycle before being approved by peers to be pushed to master.
 2. Who will be the keeper of the project? Multiple people? Nobody?
